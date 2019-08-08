@@ -3,7 +3,7 @@
 		<!-- banner部分 -->
 		<view class="banner">
 			<view class="banner_img">
-				<image class="imgbanner" src="../../static/images/home-banner%20.png"></image>
+				<image class="imgbanner" src="../../static/images/home-banner.jpg"></image>
 			</view>
 			<view class="banner_circle">
 				<ul class="banner_circle_box">
@@ -21,15 +21,15 @@
 		<view class="letter">
 			<view class="letter_space"></view>
 			<view class="letter_top">
-				<span class="bigTitle">大标题</span>
+				<span class="bigTitle">公告公告</span>
 			</view>
 			<view class="letter_main">
-				<span class="middleTitle">标题2标题2标题2标题2标题2</span>
+				<span class="middleTitle">副标题副标题副标题</span>
 			</view>
 			<view class="letter_bottom">
-				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
-				<p class="avoidOverflow">内容内容内容内容内容内容内容</p>
-				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容</p>
+				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容</p>
+				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容</p>
+				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容</p>
 			</view>
 			<view class="letter_space"></view>
 		</view>
@@ -38,7 +38,7 @@
 		<view class="nav">
 			<view style="width: 100%;height: 60rpx;"></view>
 			<view class="nav_top">
-				<view class="nav_content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/consult/consult'}})">
+				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/consult/consult'}})">
 					<view class="nav_content_img">
 						<image style="width: 85rpx;height: 72rpx;" src="../../static/images/home-icon1.png"></image>
 						<view style="width: 100%;height: 30rpx;"></view>
@@ -47,7 +47,7 @@
 						<span>咨询</span>
 					</view>
 				</view>
-				<view class="nav_content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/complaint/complaint'}})">
+				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/complaint/complaint'}})">
 					<view class="nav_content_img">
 						<image style="width: 82rpx;height: 75rpx;" src="../../static/images/home-icon2.png"></image>
 						<view style="width: 100%;height: 30rpx;"></view>
@@ -56,7 +56,7 @@
 						<span>投诉</span>
 					</view>
 				</view>
-				<view class="nav_content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/advice/advice'}})">
+				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/advice/advice'}})">
 					<view class="nav_content_img">
 						<image style="width: 62rpx;height: 72rpx;" src="../../static/images/home-icon3.png"></image>
 						<view style="width: 100%;height: 30rpx;"></view>
@@ -68,7 +68,7 @@
 			</view>
 			<view style="width: 100%;height: 60rpx;"></view>
 			<view class="nav_top">
-				<view class="nav_content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/wanted/wanted'}})">
+				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/wanted/wanted'}})">
 					<view class="nav_content_img">
 						<image style="width: 85rpx;height: 72rpx;" src="../../static/images/home-icon4.png"></image>
 						<view style="width: 100%;height: 30rpx;"></view>
@@ -77,7 +77,7 @@
 						<span>求租</span>
 					</view>
 				</view>
-				<view class="nav_content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/praise/praise'}})">
+				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/praise/praise'}})">
 					<view class="nav_content_img">
 						<image style="width: 82rpx;height: 75rpx;" src="../../static/images/home-icon5.png"></image>
 						<view style="width: 100%;height: 30rpx;"></view>
@@ -86,7 +86,7 @@
 						<span>表扬</span>
 					</view>
 				</view>
-				<view class="nav_content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/rest/rest'}})">
+				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/rest/rest'}})">
 					<view class="nav_content_img">
 						<image style="width: 66rpx;height: 66rpx;" src="../../static/images/home-icon6.png"></image>
 						<view style="width: 100%;height: 30rpx;"></view>
@@ -103,7 +103,7 @@
 		<!-- bottom部分 -->
 		<view class="sbottom">
 			<view style="width: 100%;height: 30rpx;"></view>
-			<image style="width: 100%;height:300rpx;" @click="webself.$Router.navigateTo({route:{path:'/pages/article/article'}})" src="../../static/images/home-img.png"></image>
+			<image style="width: 100%;height:300rpx;" @click="Router.navigateTo({route:{path:'/pages/article/article'}})" src="../../static/images/home-img.jpg"></image>
 			<view style="width: 100%;height: 40rpx;"></view>
 		</view>
 		<c-tabbar></c-tabbar>
@@ -117,19 +117,22 @@
 		components: {
 			cTabbar
 		},
+		
 		data() {
 			return {
-				webself:this
+				Router:this.$Router
 			}
 		},
+		
 		onLoad() {
 			const self = this;
 			//self.$Utils.loadAll(['getMainData'], self);
 		},
+		
 		methods: {
 			
 		},
-	};
+	}
 </script>
 
 <style scoped>

@@ -27,7 +27,7 @@
 				<view class="sectionone avoidOverflow3">1.内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
 				<view style="width: 100%;height: 40rpx;"></view>
 				<view class="section_img">
-					<image src="../../static/images/img1.png"></image>
+					<image src="../../static/images/img1.jpg"></image>
 				</view>
 			</view>
 		</view>
@@ -42,7 +42,7 @@
 		},
 		data() {
 			return {
-				webself:this
+				Router:this.$Router
 			}
 		}
 			

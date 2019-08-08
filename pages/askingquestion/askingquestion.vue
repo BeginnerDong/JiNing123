@@ -17,14 +17,14 @@
 				<span class="sqr_common">诉求人:</span>
 				<view class="sqr_time flex">
 					2019/7/23 6:30:09
-					<image style="width: 20rpx;height: 13rpx;margin-left: 10rpx;" src="../../static/images/ask%20questions-icon1.png"></image>
+					<image style="width: 20rpx;height: 13rpx;margin-left: 10rpx;" src="../../static/images/askquestions-icon1.png"></image>
 				</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">我的位置:</span>
 				<view class="sqr_name flex">
 					请选择
-					<image style="width: 20rpx;height: 13rpx;margin-left: 10rpx;" src="../../static/images/ask%20questions-icon1.png"></image>
+					<image style="width: 20rpx;height: 13rpx;margin-left: 10rpx;" src="../../static/images/askquestions-icon1.png"></image>
 				</view>
 			</view>
 			<view class="list_item flex">
@@ -51,21 +51,21 @@
 				<span class="sqr_common">类型:</span>
 				<view class="sqr_name flex">
 					请选择
-					<image style="width: 20rpx;height: 13rpx;margin-left: 10rpx;" src="../../static/images/ask%20questions-icon1.png"></image>
+					<image style="width: 20rpx;height: 13rpx;margin-left: 10rpx;" src="../../static/images/askquestions-icon1.png"></image>
 				</view>
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">视频上传:</span>
 				<view class="sqr_video">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" src="../../static/images/ask%20questions-icon2.png"></image>
+					<image style="width: 156rpx;height:156rpx;" src="../../static/images/askquestions-icon2.png"></image>
 				</view>
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">文档上传:</span>
 				<view class="sqr_video">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" src="../../static/images/ask%20questions-icon3.png"></image>
+					<image style="width: 156rpx;height:156rpx;" src="../../static/images/askquestions-icon3.png"></image>
 				</view>
 			</view>
 			<view class="tabbar flex flexCenter" style="" >
@@ -86,7 +86,7 @@
 		},
 		data() {
 			return {
-				webself:this
+				Router:this.$Router
 			};
 		},
 		methods: {

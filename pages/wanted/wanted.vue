@@ -10,7 +10,7 @@
 		<!-- content部分 -->
 		<view class="content flex lexCenter">
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 30rpx;"></view>
 				<view class="info flex">
 					<view class="my_icon flex">
@@ -46,7 +46,7 @@
 				</view>
 			</view>
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 30rpx;"></view>
 				<view class="info flex">
 					<view class="my_icon flex">
@@ -69,7 +69,7 @@
 				<view style="width: 100%;height: 40rpx;"></view>
 			</view>
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 30rpx;"></view>
 				<view class="info flex">
 					<view class="my_icon flex">
@@ -92,7 +92,7 @@
 				<view style="width: 100%;height: 40rpx;"></view>
 			</view>
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 30rpx;"></view>
 				<view class="info flex">
 					<view class="my_icon flex">
@@ -127,7 +127,7 @@
 		},
 		data() {
 			return {
-				webself:this
+				Router:this.$Router
 			}
 		}
 			

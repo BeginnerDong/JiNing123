@@ -30,6 +30,7 @@
 		},
 		data() {
 			return {
+				Router:this.$Router,
 				my_list:[
 					{
 						"my_src":"../../static/images/about-icon2.png",

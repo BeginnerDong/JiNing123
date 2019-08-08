@@ -2,6 +2,7 @@
 	<view class="flex flexCenter tabbar" style="" >
 		<view class="tabbar_item" @click="!color_one?Router.redirectTo({route:{path:'/pages/index/index'}}):''">
 			<view class="nav_img flex flexCenter">
+				
 			   <image style="width: 43rpx;height: 43rpx;" :src="src_one"></image>
 			</view>
 			<view class="nav_title" :style="color_one?'color:'+basic_blue:''">首页</view>
@@ -31,7 +32,7 @@
 		data() {
 			return {
 				currIndex: 0,
-				src_one:'',
+				src_one:'6666',
 				src_two:'',
 				src_three:'',
 				color_one:false,
@@ -45,7 +46,7 @@
 		mounted:function(){
 			const self = this;
 			// console.log('$AssetsConfig',this.$AssetsConfig)
-			var route = getCurrentPages().route;
+			var route = getCurrentPages()[0].__route__;
 			console.log('route',route)
 			if(route=="pages/index/index"){
 				self.src_one = '../../static/images/nabar1-a.png';
@@ -54,6 +55,7 @@
 				self.color_two = false;
 				self.src_three = '../../static/images/nabar3.png';
 				self.color_three = false;
+				console.log('src_one',self.src_one)
 			}else if(route=="pages/question/question"){
 				self.src_one = '../../static/images/nabar1.png';
 				self.color_one = false;

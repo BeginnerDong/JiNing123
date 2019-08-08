@@ -30,7 +30,7 @@
 		},
 		data() {
 			return {
-				webself:this,
+				Router:this.$Router
 			}
 		}
 			

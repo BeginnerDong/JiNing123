@@ -1,9 +1,9 @@
 <template>
 	<!-- content部分 -->
 	<view class="article_detail">
-		<view @click="webself.$Router.navigateTo({route:{path:'/pages/articledetail/articledetail'}})" :key="index" v-for="(item,index) in article_list" class="article_box">
+		<view @click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail'}})" :key="index" v-for="(item,index) in article_list" class="article_box">
 			<view class="article_img">
-				<image src="../../static/images/article-icon.png"></image>
+				<image src="../../static/images/article-icon.jpg"></image>
 			</view>
 			<view class="article_detail_box">
 				<view class="article_detail_title avoidOverflow">内容内容内容内容内容内容内容内容内容内容</view>
@@ -23,7 +23,7 @@
 		},
 		data() {
 			return {
-				webself:this,
+				Router:this.$Router,
 				article_list:[
 					{},
 					{},

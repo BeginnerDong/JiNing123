@@ -10,7 +10,7 @@
 		<!-- content部分 -->
 		<view class="content flex flexCenter">
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 40rpx;"></view>
 				<view class="content_box_question">
 					<view class="content_box_question_left">
@@ -41,7 +41,7 @@
 				</view>
 			</view>
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 40rpx;"></view>
 				<view class="content_box_question">
 					<view class="content_box_question_left">
@@ -73,7 +73,7 @@
 				</view>
 			</view>
 			<view style="width: 100%;height: 40rpx;"></view>
-			<view class="content_box" @click="webself.$Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
+			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
 				<view style="width: 100%;height: 40rpx;"></view>
 				<view class="content_box_question">
 					<view class="content_box_question_left">
@@ -115,7 +115,7 @@
 		
 		data() {
 			return {
-				webself:this
+				Router:this.$Router
 			}
 		},
 		methods: {

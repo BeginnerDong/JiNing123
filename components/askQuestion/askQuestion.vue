@@ -1,6 +1,6 @@
 <template>
 	<view class="flex flexCenter tabbar" style="" >
-		<view class="askquestion flex flexCenter" @click="webself.$Router.navigateTo({route:{path:'/pages/acceptancenotice/acceptancenotice'}})">
+		<view class="askquestion flex flexCenter" @click="Router.navigateTo({route:{path:'/pages/acceptancenotice/acceptancenotice'}})">
 			<span class="question">提问题</span>
 		</view>
 	</view>
@@ -15,7 +15,7 @@
 		
 		data() {
 			return {
-				webself:this
+				Router:this.$Router
 			};
 		},
 		methods: {
