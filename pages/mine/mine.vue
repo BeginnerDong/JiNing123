@@ -4,7 +4,6 @@
 		<view class="header flex">
 			<image class="my_icon" src="../../static/images/about-img.png" style="width: 140rpx;height: 140rpx;"></image>
 		</view>
-		<view style="width: 100%;height: 20rpx;"></view>
 		<view class="my_name">快乐的人</view>
 		<view class="my_list">
 			<view class="box" :key="index" v-for="(item,index) in my_list" @click="goPage(item.my_key)">
@@ -34,7 +33,12 @@
 				my_list:[
 					{
 						"my_src":"../../static/images/about-icon2.png",
-						"my_title":"我的问题",
+						"my_title":"个人信息",
+						"my_key":"myattention2"
+					},
+					{
+						"my_src":"../../static/images/about-icon2.png",
+						"my_title":"我的诉求",
 						"my_key":"myquestion"
 					},
 					{
@@ -44,7 +48,7 @@
 					},
 					{
 						"my_src":"../../static/images/about-icon4.png",
-						"my_title":"我的评论",
+						"my_title":"产品反馈",
 						"my_key":"mycomment"
 					},
 				]
@@ -52,7 +56,9 @@
 		},
 		methods: {
 			goPage(id) {
-				if(id=="myquestion"){
+				if(id=="myattention2"){
+					this.$Router.navigateTo({route:{path:'/pages/personInfor/personInfor'}});
+				}else if(id=="myquestion"){
 					this.$Router.navigateTo({route:{path:'/pages/myquestion/myquestion'}});
 				}else if(id=="myattention"){
 					this.$Router.navigateTo({route:{path:'/pages/myattention/myattention'}});
