@@ -74,7 +74,7 @@
 						<view style="width: 100%;height: 30rpx;"></view>
 					</view>
 					<view class="nav_content_title">
-						<span>求租</span>
+						<span>求助</span>
 					</view>
 				</view>
 				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/praise/praise'}})">

@@ -3,8 +3,8 @@
 		<!-- header部分 -->
 		<view class="header flex flexCenter">
 			<view class="header_switch flex">
-				<view class="hasquestion">待解决</view>
-				<view class="noquestion actived">已解决</view>
+				<view class="hasquestion" :class="num==0?'actived':''" @click="change('0')">待解决</view>
+				<view class="noquestion" :class="num==1?'actived':''" @click="change('1')">已解决</view>
 			</view>
 		</view>
 		<!-- content部分 -->
@@ -115,12 +115,18 @@
 		
 		data() {
 			return {
-				Router:this.$Router
+				Router:this.$Router,
+				num:0
 			}
 		},
-		methods: {
-			
-		},
+		methods:{
+			change(num){
+				const self = this;
+				if(num!=self.num){
+					self.num = num
+				}
+			},
+		}
 			
 	};
 </script>

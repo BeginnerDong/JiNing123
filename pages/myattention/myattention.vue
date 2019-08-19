@@ -3,12 +3,12 @@
 		<!-- nav部分 -->
 		<view>
 			<ul class="nav flex">
-				<li><span class="nav_actived">咨询</span></li>
-				<li><span>投诉</span></li>
-				<li><span>建议</span></li>
-				<li><span>求租</span></li>
-				<li><span>表扬</span></li>
-				<li><span>其他</span></li>
+				<li  @click="change('0')"><span :class="num==0?'nav_actived':''">咨询</span></li>
+				<li  @click="change('1')"><span :class="num==1?'nav_actived':''">投诉</span></li>
+				<li  @click="change('2')"><span :class="num==2?'nav_actived':''">建议</span></li>
+				<li  @click="change('3')"><span :class="num==3?'nav_actived':''">求助</span></li>
+				<li  @click="change('4')"><span :class="num==4?'nav_actived':''">表扬</span></li>
+				<li  @click="change('5')"><span :class="num==5?'nav_actived':''">其他</span></li>
 			</ul>
 		</view>
 		<!-- content部分 -->
@@ -122,10 +122,18 @@
 		},
 		data() {
 			return {
-				Router:this.$Router
+				Router:this.$Router,
+				num:0
 			}
-		}
-			
+		},
+		methods:{
+			change(num){
+				const self = this;
+				if(num!=self.num){
+					self.num = num
+				}
+			},
+		}	
 	};
 </script>
 

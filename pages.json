@@ -46,7 +46,7 @@
 		{
 		    "path" : "pages/wanted/wanted",
 		    "style" : {
-		        "navigationBarTitleText" : "求租", //设置页面标题文字
+		        "navigationBarTitleText" : "求助", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
 		},
