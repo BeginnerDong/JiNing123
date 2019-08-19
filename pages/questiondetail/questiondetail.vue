@@ -89,10 +89,10 @@
 	
 	.satisftion{padding: 30rpx; margin-bottom: 120rpx;}
 	.satisftion .tit{font-size: 30rpx; font-weight: bold;padding-bottom: 40rpx;}
-	.satisftion .selLis{line-height: 44rpx;text-align: center;padding-bottom: 50rpx;}
-	.satisftion .qst{ line-height: 40rpx; font-size: 28rpx; padding-bottom: 10rpx;}
-	.satisftion .radio{margin:0 30rpx;}
-	.section textarea{ width: 90%;height: 160rpx; background: #f5f5f5;padding: 20rpx;box-sizing: border-box; display: block; margin: 0 auto; font-size: 28rpx;}
+	.satisftion .selLis{line-height: 44rpx;text-align: center;display: flex;justify-content: space-between; align-items: center; height: 100rpx;}
+	.satisftion .qst{ line-height: 40rpx; font-size: 24rpx;}
+	.satisftion .radio{margin:0 30rpx; font-size: 28rpx;}
+	.section textarea{ width: 96%;height: 160rpx; background: #f5f5f5;padding: 20rpx;box-sizing: border-box; display: block; margin: 0 auto; font-size: 28rpx; margin-top: 20rpx;}
 	.pjbtn{width:80%;height: 80rpx; line-height: 80rpx;text-align: center;background: rgb(17, 149, 250);color: #fff;margin: 80rpx; font-size: 28rpx;}
 	
 	/* header部分 */
