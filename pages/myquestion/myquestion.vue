@@ -1,12 +1,12 @@
 <template>
 	<view>
 		<!-- header部分 -->
-		<view class="header flex flexCenter">
+		<!-- <view class="header flex flexCenter">
 			<view class="header_switch flex">
 				<view class="hasquestion" :class="num==0?'actived':''" @click="change('0')">待解决</view>
 				<view class="noquestion" :class="num==1?'actived':''" @click="change('1')">已解决</view>
 			</view>
-		</view>
+		</view> -->
 		<!-- content部分 -->
 		<view class="content flex flexCenter">
 			<view class="content_box" @click="Router.navigateTo({route:{path:'/pages/questiondetail/questiondetail'}})">
