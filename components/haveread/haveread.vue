@@ -1,7 +1,7 @@
 <template>
 	<view class="flex flexCenter tabbar" style="" >
 		<view class="askquestion flex flexCenter" @click="Router.navigateTo({route:{path:'/pages/askingquestion/askingquestion'}})">
-			<span class="question">我已阅读，继续反映</span>
+			<span class="question">我已阅读并同意，继续反映</span>
 		</view>
 	</view>
 </template>

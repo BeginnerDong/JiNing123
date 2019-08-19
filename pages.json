@@ -116,7 +116,14 @@
 		{
 		    "path" : "pages/mycomment/mycomment",
 		    "style" : {
-		        "navigationBarTitleText" : "我的评论", //设置页面标题文字
+		        "navigationBarTitleText" : "产品反馈", //设置页面标题文字
+		        "onReachBottomDistance" : 100
+		    }
+		},
+		{
+		    "path" : "pages/personInfor/personInfor",
+		    "style" : {
+		        "navigationBarTitleText" : "个人信息", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
 		}

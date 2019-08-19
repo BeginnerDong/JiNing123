@@ -1,0 +1,27 @@
+/* 我的问题列表 */
+
+	/* nav部分 */
+	.qustNav{font-size: 28rpx;width: 100%;background: #FFFFFF;border: solid 1px #EFEFEF;height: 100rpx;}
+	.qustNav>li{-webkit-flex: 1;text-align: center;color: #666666;}
+	.qustNav>li>span{padding: 18rpx 0;}
+	.qustNav .nav_actived{line-height: 100%;color: #1095f9;border-bottom: solid 6px #1095F9;}
+
+
+	.content{flex-direction:column; padding-bottom: 40rpx;}
+	.content_box{width: 92%;height:auto;background: #FFFFFF;box-shadow: 0px 0px 6px #E5E5E5; padding: 30rpx 20rpx; margin: 40rpx auto 0 auto; box-sizing: border-box; border-radius: 12rpx;}
+	.content_box_question{padding-left: 40rpx; position: relative;}
+	.content_box_question .icon{position: absolute;left: 0;top: 4px;width: 28rpx;height: 24rpx;}
+	.content_box_question .title{ font-size: 28rpx;padding-bottom: 10rpx;font-weight: bold;}
+	.content_box_question .text{font-size: 28rpx; line-height: 40rpx; color: #999;}
+	.lookdetail{font-size: 24rpx;color: #1095F9;text-align: right;padding-top: 30rpx;}
+	.lookdetail image{width: 20rpx;height: 12rpx;margin-right:20rpx;margin-left:8rpx;transform: rotate(270deg);}
+	
+	/* search部分 */
+	.search{width: 100%;height: 100rpx; margin-top: 30rpx;}
+	.searchword{background:#ffffff;width: 690rpx;height: 60rpx;font-size: 24rpx;border: solid 1px #999999;text-indent: 20rpx;border-radius: 10rpx;position: relative;}
+	.searchIcon{width: 30rpx;height: 30rpx;position: absolute;right: 8%;}
+	
+	.my_name{font-size: 28rpx;color: #666666;margin-left: 20rpx;}
+	.my_info_complete{font-size: 24rpx;color: #1095f9;}
+	.my_info_noaccept{font-size: 24rpx;color: #ff3b3b;}
+	
