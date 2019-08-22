@@ -20,10 +20,10 @@
 				</view>
 				<view style="width: 100%;height: 40rpx;"></view>
 				<view class="section_img">
-					<image src="../../static/images/newpic.png"></image>
+					<image src="../../static/images/newpic.jpg"></image>
 				</view>
 				<view class="section_img">
-					<image src="../../static/images/newpic2.png"></image>
+					<image src="../../static/images/newpic2.jpg"></image>
 				</view>
 			</view>
 		</view>
