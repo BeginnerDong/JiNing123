@@ -1,0 +1,14 @@
+
+/*  */
+.pageBjH{position:fixed;top: 88rpx;right: 0;bottom:120rpx;left: 0;width: 100%;display: block;z-index: 1;}
+.pageBjH .bjImg{width: 100%;height: 100%;}
+.cont_BjH{width:92%;padding: 30rpx;box-sizing: border-box;background: rgba(0,0,0,0.5);position: absolute;top: 30rpx;right: 30rpx;bottom:30rpx;left: 30rpx;font-size: 28rpx;color: #fff;}
+.cont_BjH .contBox{overflow-y: auto;height: 100%;}
+.handyCont .item{ display: flex; justify-content: space-between;height: 74rpx; align-items: center;}
+.handyCont .item view{width: 48%;}
+.handyCont .item .phone{ text-align: right;}
+
+.hotlilneCont{ line-height: 42rpx;}
+.hotlilneCont image{max-width: 100%;display: block;margin: 0 auto;}
+.hotlilneCont view{padding-bottom: 20rpx;}
+.hotlilneCont .title{text-align: center;font-size: 30rpx;padding-bottom: 30rpx;}

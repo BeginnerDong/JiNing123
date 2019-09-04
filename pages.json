@@ -4,7 +4,7 @@
         {
             "path" : "pages/index/index",
             "style" : {
-                "navigationBarTitleText" : "济宁12345", //设置页面标题文字
+                "navigationBarTitleText" : "济宁市12345政务服务热线", //设置页面标题文字
                 "onReachBottomDistance" : 100
             }
         },
@@ -37,37 +37,16 @@
 		    }
 		},
 		{
-		    "path" : "pages/advice/advice",
+		    "path" : "pages/newsList/newsList",
 		    "style" : {
-		        "navigationBarTitleText" : "建议", //设置页面标题文字
+		        "navigationBarTitleText" : "新闻动态", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
 		},
 		{
-		    "path" : "pages/wanted/wanted",
+		    "path" : "pages/policyList/policyList",
 		    "style" : {
-		        "navigationBarTitleText" : "求助", //设置页面标题文字
-		        "onReachBottomDistance" : 100
-		    }
-		},
-		{
-		    "path" : "pages/praise/praise",
-		    "style" : {
-		        "navigationBarTitleText" : "表扬", //设置页面标题文字
-		        "onReachBottomDistance" : 100
-		    }
-		},
-		{
-		    "path" : "pages/rest/rest",
-		    "style" : {
-		        "navigationBarTitleText" : "其他", //设置页面标题文字
-		        "onReachBottomDistance" : 100
-		    }
-		},
-		{
-		    "path" : "pages/article/article",
-		    "style" : {
-		        "navigationBarTitleText" : "精选文章", //设置页面标题文字
+		        "navigationBarTitleText" : "政策法规", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
 		},
@@ -107,9 +86,16 @@
 		    }
 		},
 		{
-		    "path" : "pages/myattention/myattention",
+		    "path" : "pages/myAppeal/myAppeal",
 		    "style" : {
-		        "navigationBarTitleText" : "我的关注", //设置页面标题文字
+		        "navigationBarTitleText" : "我的诉求", //设置页面标题文字
+		        "onReachBottomDistance" : 100
+		    }
+		},
+		{
+		    "path" : "pages/myAppealDetail/myAppealDetail",
+		    "style" : {
+		        "navigationBarTitleText" : "问题详情", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
 		},
@@ -126,12 +112,40 @@
 		        "navigationBarTitleText" : "个人信息", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
+		},
+		{
+		    "path" : "pages/inforRegister/inforRegister",
+		    "style" : {
+		        "navigationBarTitleText" : "信息注册", //设置页面标题文字
+		        "onReachBottomDistance" : 100
+		    }
+		},
+		{
+		    "path" : "pages/handySevice/handySevice",
+		    "style" : {
+		        "navigationBarTitleText" : "便民服务", //设置页面标题文字
+		        "onReachBottomDistance" : 100
+		    }
+		},
+		{
+		    "path" : "pages/hotlineIntroduce/hotlineIntroduce",
+		    "style" : {
+		        "navigationBarTitleText" : "热线介绍", //设置页面标题文字
+		        "onReachBottomDistance" : 100
+		    }
+		},
+		{
+		    "path" : "pages/useHelp/useHelp",
+		    "style" : {
+		        "navigationBarTitleText" : "使用帮助", //设置页面标题文字
+		        "onReachBottomDistance" : 100
+		    }
 		}
     ],
     "globalStyle" : {
         //"navigationStyle":"custom",
-        "navigationBarTitleText" : "济宁12345",
-        "navigationBarBackgroundColor" : "#1195FA"
+        "navigationBarTitleText" : "济宁市12345政务服务热线",
+        "navigationBarBackgroundColor" : "#ca1c1d"
     },
     "condition" : {
         //模式配置，仅开发期间生效

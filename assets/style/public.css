@@ -207,7 +207,10 @@ body div{
     color: #fff;
 }
 
-
+/* 选择 */
+.r-selt{ display: flex;}
+.r-selt .selt{width:150rpx; display: flex; justify-content: flex-start; align-items: center;}
+.r-selt .selt image{width: 36rpx;height: 36rpx; display: inline-block; margin-right: 10rpx;}
 
 
 .pdpage160{padding-bottom: 160rpx;background: #f5f5f5;}

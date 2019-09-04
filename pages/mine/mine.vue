@@ -36,18 +36,18 @@
 						"my_title":"个人信息",
 						"my_key":"myattention2"
 					},
-					{
-						"my_src":"../../static/images/about-icon2.png",
-						"my_title":"我的诉求",
-						"my_key":"myquestion"
-					},
+					// {
+					// 	"my_src":"../../static/images/about-icon2.png",
+					// 	"my_title":"我的诉求",
+					// 	"my_key":"myquestion"
+					// },
+					// {
+					// 	"my_src":"../../static/images/about-icon3.png",
+					// 	"my_title":"我的关注",
+					// 	"my_key":"myattention"
+					// },
 					{
 						"my_src":"../../static/images/about-icon3.png",
-						"my_title":"我的关注",
-						"my_key":"myattention"
-					},
-					{
-						"my_src":"../../static/images/about-icon4.png",
 						"my_title":"产品反馈",
 						"my_key":"mycomment"
 					},
@@ -74,7 +74,7 @@
 <style scoped>
 	@import url("../../assets/style/public.css");
 	/* header部分 */
-	.header{width: 100%;height: 264rpx;justify-content: center;align-items: flex-end;background: url(../../static/images/abaout-icon1.png);background-size: 100% 100%;}
+	.header{width: 100%;height: 264rpx;justify-content: center;align-items: flex-end;background: url(../../static/images/about-icon1.png);background-size: 100% 100%;}
 	.header>image{width: 100%;height: 100%;}
 	.my_name{text-align: center;font-size: 28rpx;color: #222222;}
 	.my_list_box{padding: 40rpx 0;margin: 0 20rpx;justify-content: space-between;border-bottom: solid 1px #EAEAEA;}

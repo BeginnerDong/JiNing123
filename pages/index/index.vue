@@ -2,114 +2,48 @@
 	<view style="width:100%">
 		<!-- banner部分 -->
 		<view class="banner">
-			<view class="banner_img">
-				<image class="imgbanner" src="../../static/images/home-banner.jpg"></image>
+			<swiper class="swiper-box" indicator-dots="indicatorDots" autoplay="autoplay" interval="interval" duration="duration" indicator-color="#d8d8d8" indicator-active-color="#ca1c1d">
+				<block v-for="(item,index) in labelData" :key="index">
+					<swiper-item  class="swiper-item" >
+						<image :src="item.mainImg" class="slide-image"/>
+						<view class="title avoidOverflow">{{item.title}}</view>
+					</swiper-item>
+				</block> 
+			</swiper>
+		</view>
+		<view class="scrollMsg">
+			<image class="icon" src="../../static/images/home-icon1.png" mode=""></image>
+			<view class="avoidOverflow">梁山县小安山镇青堌堆村村民反映，村东头种植的杨树上有许多长毛虫</view>
+		</view>
+		
+		<!-- 菜单 -->
+		<view class="inde-nav">
+			<view class="item" @click="Router.navigateTo({route:{path:'/pages/acceptancenotice/acceptancenotice'}})">
+				<image class="icon" src="../../static/images/home-icon2.png"></image>
+				<view class="title">诉求提交</view>
 			</view>
-			<view class="banner_circle">
-				<ul class="banner_circle_box">
-					<li class="circle"></li>
-					<li class="space"></li>
-					<li class="circle current"></li>
-					<li class="space"></li>
-					<li class="circle"></li>
-					<li class="space"></li>
-					<li class="circle"></li>
-				</ul>
+			<view class="item" @click="Router.navigateTo({route:{path:'/pages/myAppeal/myAppeal'}})">
+				<image class="icon" src="../../static/images/home-icon3.png"></image>
+				<view class="title">我的诉求</view>
+			</view>
+			<view class="item" @click="Router.navigateTo({route:{path:'/pages/mine/mine'}})">
+				<image class="icon" src="../../static/images/home-icon4.png"></image>
+				<view class="title">个人中心</view>
+			</view>
+			<view class="item" @click="Router.navigateTo({route:{path:'/pages/newsList/newsList'}})">
+				<image class="icon" src="../../static/images/home-icon5.png"></image>
+				<view class="title">新闻动态</view>
+			</view>
+			<view class="item" @click="Router.navigateTo({route:{path:'/pages/policyList/policyList'}})">
+				<image class="icon" src="../../static/images/home-icon6.png"></image>
+				<view class="title">政策法规</view>
+			</view>
+			<view class="item"  @click="Router.navigateTo({route:{path:'/pages/question/question'}})">
+				<image class="icon" src="../../static/images/home-icon7.png"></image>
+				<view class="title">常见问题</view>
 			</view>
 		</view>
-		<!-- letter部分 -->
-		<view class="letter">
-			<view class="letter_space"></view>
-			<view class="letter_top">
-				<span class="bigTitle">为民务实、规范高效</span>
-			</view>
-			<view class="letter_main">
-				<span class="middleTitle">应答民生诉求，服务百姓需要</span>
-			</view>
-			<view class="letter_bottom">
-				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容</p>
-				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容</p>
-				<p class="avoidOverflow">内容内容内容内容内容内容内容内容内容内容内容内容</p>
-			</view>
-			<view class="letter_space"></view>
-		</view>
-		<view style="width: 100%;height: 10rpx;background: #F2F2F2;"></view>
-		<!-- nav部分 -->
-		<view class="nav">
-			<view style="width: 100%;height: 60rpx;"></view>
-			<view class="nav_top">
-				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/consult/consult'}})">
-					<view class="nav_content_img">
-						<image class="icon" src="../../static/images/home-icon1.png"></image>
-						<view style="width: 100%;height: 30rpx;"></view>
-					</view>
-					<view class="nav_content_title">
-						<span>咨询</span>
-					</view>
-				</view>
-				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/complaint/complaint'}})">
-					<view class="nav_content_img">
-						<image class="icon" style="width: 82rpx;height: 75rpx;" src="../../static/images/home-icon2.png"></image>
-						<view style="width: 100%;height: 30rpx;"></view>
-					</view>
-					<view class="nav_content_title">
-						<span>投诉</span>
-					</view>
-				</view>
-				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/advice/advice'}})">
-					<view class="nav_content_img">
-						<image class="icon" src="../../static/images/home-icon3.png"></image>
-						<view style="width: 100%;height: 30rpx;"></view>
-					</view>
-					<view class="nav_content_title">
-						<span>建议</span>
-					</view>
-				</view>
-			</view>
-			<view style="width: 100%;height: 60rpx;"></view>
-			<view class="nav_top">
-				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/wanted/wanted'}})">
-					<view class="nav_content_img">
-						<image class="icon" src="../../static/images/home-icon4.png"></image>
-						<view style="width: 100%;height: 30rpx;"></view>
-					</view>
-					<view class="nav_content_title">
-						<span>求助</span>
-					</view>
-				</view>
-				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/praise/praise'}})">
-					<view class="nav_content_img">
-						<image class="icon" src="../../static/images/home-icon5.png"></image>
-						<view style="width: 100%;height: 30rpx;"></view>
-					</view>
-					<view class="nav_content_title">
-						<span>表扬</span>
-					</view>
-				</view>
-				<view class="nav_content_box" @click="Router.navigateTo({route:{path:'/pages/rest/rest'}})">
-					<view class="nav_content_img">
-						<image class="icon" src="../../static/images/home-icon6.png"></image>
-						<view style="width: 100%;height: 30rpx;"></view>
-					</view>
-					<view class="nav_content_title">
-						<span>其他</span>
-					</view>
-				</view>
-			</view>
-			<view style="width: 100%;height: 60rpx;"></view>
-			<!-- <view style="width: 100%;height: 60rpx;"></view> -->
-		</view>
-		<view style="width: 100%;height: 10rpx;background: #F2F2F2;"></view>
-		<!-- bottom部分 -->
-		<view class="sbottom">
-			<view style="width: 100%;height: 30rpx;"></view>
-			<view class="text">
-				<view>新闻动态</view>
-				<view>政策法规</view>
-			</view>
-			<image style="width: 100%;height:300rpx;" @click="Router.navigateTo({route:{path:'/pages/article/article'}})" src="../../static/images/home-img.jpg"></image>
-			<view style="width: 100%;height: 40rpx;"></view>
-		</view>
+
 		<c-tabbar></c-tabbar>
 	</view>
 </template>
@@ -124,7 +58,21 @@
 		
 		data() {
 			return {
-				Router:this.$Router
+				Router:this.$Router,
+				labelData:[
+					{
+						mainImg:"../../static/images/banner.png",
+						title:"1.连续坚持迎战台风背后，她们架起一条畅通的道路"
+					},
+					{
+						mainImg:"../../static/images/img1.jpg",
+						title:"2.连续坚持迎战台风背后，她们架起一条畅通的道路"
+					},
+					{
+						mainImg:"../../static/images/home-img.jpg",
+						title:"3.连续坚持迎战台风背后，她们架起一条畅通的道路"
+					}
+				]
 			}
 		},
 		
@@ -141,35 +89,21 @@
 
 <style scoped>
 	@import url("../../assets/style/public.css");
+	page{padding-bottom: 140rpx;}
 	  /* banner部分 */
-		.banner_img{width: 100%;height: 380rpx;}
-		.imgbanner{width: 100%;height: 100%;}
-		.banner{position: relative;}
-		.banner_circle{position: absolute;left: 45%;bottom: 20rpx;}
-		.banner_circle_box>li{float:left;height: 8rpx;}
-		.circle{width: 8rpx;height: 100%;background: #8E8E90;border-radius: 100%;}
-		.current{background: #0E95F6;}
-		.space{ width: 14rpx;height: 100%;}
-		/* letter部分 */
-		.letter{text-align: center;background: #ffffff;}
-		.letter_space{width: 14rpx;height: 50rpx;}
-		.bigTitle{font-family: PingFang-SC-Bold;font-size:30rpx;line-height:30rpx;color: #222222;}
-		.letter_main{margin: 30rpx auto;}
-		.middleTitle{font-family: PingFang-SC-Bold;font-size:26rpx;line-height:26rpx;color: ##4C4C4C;}
-		.letter_bottom{width: 100%;}
-		.letter_bottom>p{font-family: PingFang-SC-Bold;font-size:24rpx;line-height:32rpx;width:100%;color: #595959;}
-		/* nav部分 */
-		.nav{background: #FFFFFF;}
-		.nav_content_box{width: 33.3%;text-align: center;float: left;}
-		.nav_top{overflow: hidden;}
-		.nav_content_title{font-family: PingFang-SC-Bold;font-size:28rpx;line-height:28rpx;color: #242424;}
+	.banner{height: 400rpx;} 
+	.banner .swiper-box{height: 100%;}
+	.banner .swiper-box .swiper-item{ position: relative;}
+	.banner .swiper-box image{width: 100%;height: 100%;}
+	.banner .swiper-box .title{position: absolute;bottom: 0;left: 0;width: 100%;padding: 0 180rpx 0 3%;box-sizing: border-box;height: 80rpx;line-height: 80rpx;background: rgba(0,0,0,0.5);color: #fff;font-size: 28rpx;}
+	.banner .swiper-box .swiper-dots-horizontal{bottom: 50%;}
+	
+	.scrollMsg{line-height: 80rpx;padding: 0 3% 0 90rpx;position: relative;height: 80rpx;background: #f3faff;border-bottom: 2rpx solid #e7e7e7;font-size: 26rpx;color: #666;}
+	.scrollMsg .icon{ width: 42rpx; height: 38rpx;position: absolute;top: 21rpx;left: 3%;}
+	
+	.inde-nav{display: flex;flex-wrap: wrap;}
+	.inde-nav .item{width: 33.3%;padding:50rpx 0; text-align: center;border-right: 2rpx solid #e7e7e7;border-bottom:2rpx solid #e7e7e7 ;box-sizing: border-box;}
+	.inde-nav .item .icon{width:70rpx; height: 70rpx; display: block;margin: 0 auto;}
+	.inde-nav .item .title{font-size: 28rpx; margin-top: 20rpx;}
 		
-		.nav_content_img .icon{ width:70rpx; height: 70rpx;}
-		/* bottom部分 */
-		.sbottom{background: #FFFFFF;padding-bottom: 89rpx; position: relative;}
-		.sbottom .text{ position: absolute; top: 40rpx;left: 40rpx;color: #fff; z-index: 6; font-size: 34rpx; text-align: center;}
-		.sbottom .text>view{line-height: 60rpx;}
-		
-		.bottomImg{}
-		.home_bottom{width: 100%;height: 300rpx;}
 </style>
