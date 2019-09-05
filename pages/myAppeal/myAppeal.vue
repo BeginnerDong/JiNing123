@@ -20,11 +20,10 @@
 </template>
 
 <script>
-	import cTabbar from "@/components/tabbar/tabbar.vue"
 	
 	export default {
 		components: {
-			cTabbar
+			// cTabbar
 		},
 		data() {
 			return {

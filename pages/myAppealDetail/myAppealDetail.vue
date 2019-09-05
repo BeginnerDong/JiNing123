@@ -28,22 +28,22 @@
 			<view class="selLis">
 				<view class="qst">办理结果是否满意</view>
 				<view class="r-selt">
-					<view class="selt">
-						<image src="../../static/images/appeal-icon4.png" mode=""></image>是
+					<view class="selt" @click="change('1')">
+						<image :src="curr==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>是
 					</view>
-					<view class="selt">
-						<image src="../../static/images/appeal-icon5.png" mode=""></image>否
+					<view class="selt" @click="change('2')">
+						<image :src="curr==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>否
 					</view>
 				</view>
 			</view>
 			<view class="selLis">
 				<view class="qst">服务态度是否满意</view>
 				<view class="r-selt">
-					<view class="selt">
-						<image src="../../static/images/appeal-icon4.png" mode=""></image>是
+					<view class="selt" @click="secrecy('1')">
+						<image :src="index==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'"  mode=""></image>是
 					</view>
-					<view class="selt">
-						<image src="../../static/images/appeal-icon5.png" mode=""></image>否
+					<view class="selt"  @click="secrecy('2')">
+						<image :src="index==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>否
 					</view>
 				</view>
 			</view>
@@ -69,9 +69,25 @@
 		data() {
 			return {
 				Router:this.$Router,
-				is_show:false
+				is_show:false,
+				curr:1,
+				index: 0,
 			}
 		},
+		methods:{
+			change(curr){
+				const self=this
+				if(curr!=self.curr){
+					self.curr=curr
+				}
+			},
+			secrecy(index){
+				const self=this
+				if(index!=self.index){
+					self.index=index
+				}
+			},
+		}
 			
 	};
 </script>

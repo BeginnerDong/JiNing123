@@ -19,15 +19,11 @@
 </template>
 
 <script>
-	import haveRead from "@/components/haveread/haveread.vue"
 	export default {
-		components: {
-			haveRead
-		},
 		data() {
 			return {
+				is_show:false,
 				Router:this.$Router,
-				is_show:false
 			}
 		},
 		methods: {

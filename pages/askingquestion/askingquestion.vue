@@ -17,14 +17,14 @@
 				<span class="sqr_common">时间:</span>
 				<view class="rr sqr_time flex">
 					<input type="date" value="2019-09-14 14:30:09">
-					<image class="arrow" src="../../static/images/askquestions-icon1.png"></image>
+					<image class="arrow" src="../../static/images/appeal-icon1.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">事发地址:</span>
 				<view class="rr sqr_name flex">
 					请选择
-					<image class="arrow" src="../../static/images/askquestions-icon1.png"></image>
+					<image class="arrow" src="../../static/images/appeal-icon1.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item flex">
@@ -60,43 +60,44 @@
 						</view>
 					</view>
 					<!-- 请选择 -->
-					<image class="arrow" src="../../static/images/askquestions-icon1.png"></image>
+					<image class="arrow" src="../../static/images/appeal-icon1.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">视频上传:</span>
 				<view class="sqr_video">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" src="../../static/images/askquestions-icon2.png"></image>
+					<image style="width: 156rpx;height:156rpx;" src="../../static/images/appeal-icon3.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">文档上传:</span>
 				<view class="sqr_video">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" src="../../static/images/askquestions-icon3.png"></image>
+					<image style="width: 156rpx;height:156rpx;" src="../../static/images/appeal-icon3.png"></image>
 				</view>
 			</view>
 			
 			<view class="selLis">
 				<view class="qst">公开意向</view>
 				<view class="r-selt">
-					<view class="selt">
-						<image src="../../static/images/appeal-icon4.png" mode=""></image>公开
+					<view class="selt" @click="change('1')">
+						<image :src="curr==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>公开
 					</view>
-					<view class="selt">
-						<image src="../../static/images/appeal-icon5.png" mode=""></image>不公开
+					<view class="selt" @click="change('2')">
+						<image :src="curr==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>不公开
 					</view>
+					
 				</view>
 			</view>
 			<view class="selLis">
 				<view class="qst">是否保密</view>
 				<view class="r-selt">
-					<view class="selt">
-						<image src="../../static/images/appeal-icon4.png" mode=""></image>是
+					<view class="selt" @click="secrecy('1')">
+						<image :src="index==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'"  mode=""></image>是
 					</view>
-					<view class="selt">
-						<image src="../../static/images/appeal-icon5.png" mode=""></image>否
+					<view class="selt"  @click="secrecy('2')">
+						<image :src="index==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>否
 					</view>
 				</view>
 			</view>
@@ -116,11 +117,25 @@
 		data() {
 			return {
 				Router:this.$Router,
+				curr:1,
+				index: 0,
 				array: ['请选择','类型一', '类型二', '类型三', '类型四'],
-				index: 0
+				
 			};
 		},
 		methods: {
+			change(curr){
+				const self=this
+				if(curr!=self.curr){
+					self.curr=curr
+				}
+			},
+			secrecy(index){
+				const self=this
+				if(index!=self.index){
+					self.index=index
+				}
+			},
 			bindPickerChange: function(e) {
 				console.log('picker发送选择改变，携带值为', e.target.value)
 				this.index = e.target.value

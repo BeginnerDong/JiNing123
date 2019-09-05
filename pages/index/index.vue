@@ -3,8 +3,8 @@
 		<!-- banner部分 -->
 		<view class="banner">
 			<swiper class="swiper-box" indicator-dots="indicatorDots" autoplay="autoplay" interval="interval" duration="duration" indicator-color="#d8d8d8" indicator-active-color="#ca1c1d">
-				<block v-for="(item,index) in labelData" :key="index">
-					<swiper-item  class="swiper-item" >
+				<block v-for="(item,index) in labelData" :key="index" >
+					<swiper-item  class="swiper-item" @click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail'}})">
 						<image :src="item.mainImg" class="slide-image"/>
 						<view class="title avoidOverflow">{{item.title}}</view>
 					</swiper-item>
@@ -44,18 +44,12 @@
 			</view>
 		</view>
 
-		<c-tabbar></c-tabbar>
 	</view>
 </template>
 
 <script>
-	import cTabbar from "@/components/tabbar/tabbar.vue"
 	
 	export default {
-		components: {
-			cTabbar
-		},
-		
 		data() {
 			return {
 				Router:this.$Router,

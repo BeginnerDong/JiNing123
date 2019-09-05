@@ -12,21 +12,16 @@
 						<image style="width: 32rpx;height: 32rpx;" :src="item.my_src"></image>
 						<span class="title">{{item.my_title}}</span>
 					</view>
-					<image class="my_icon" style="width: 10rpx;height: 20rpx;" src="../../static/images/about-icon5.png"></image>
+					<image class="my_icon" style="width: 15rpx;height: 30rpx;" src="../../static/images/about-icon4.png"></image>
 				</view>
 			</view>
 		</view>
-		<c-tabbar></c-tabbar>
 	</view>
 </template>
 
 <script>
-	import cTabbar from "@/components/tabbar/tabbar.vue"
 	
 	export default {
-		components: {
-			cTabbar
-		},
 		data() {
 			return {
 				Router:this.$Router,
@@ -36,16 +31,6 @@
 						"my_title":"个人信息",
 						"my_key":"myattention2"
 					},
-					// {
-					// 	"my_src":"../../static/images/about-icon2.png",
-					// 	"my_title":"我的诉求",
-					// 	"my_key":"myquestion"
-					// },
-					// {
-					// 	"my_src":"../../static/images/about-icon3.png",
-					// 	"my_title":"我的关注",
-					// 	"my_key":"myattention"
-					// },
 					{
 						"my_src":"../../static/images/about-icon3.png",
 						"my_title":"产品反馈",

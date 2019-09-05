@@ -23,16 +23,13 @@
 				</view>
 			</view>
 		</view>
-		<c-tabbar></c-tabbar>
 	</view>
 </template>
 
 <script>
-	import cTabbar from "@/components/tabbar/tabbar.vue"
 
 	export default {
 		components: {
-			cTabbar
 		},
 		data() {
 			return {

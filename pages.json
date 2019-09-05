@@ -23,20 +23,6 @@
 		    }
 		},
 		{
-		    "path" : "pages/consult/consult",
-		    "style" : {
-		        "navigationBarTitleText" : "咨询", //设置页面标题文字
-		        "onReachBottomDistance" : 100
-		    }
-		},
-		{
-		    "path" : "pages/complaint/complaint",
-		    "style" : {
-		        "navigationBarTitleText" : "投诉", //设置页面标题文字
-		        "onReachBottomDistance" : 100
-		    }
-		},
-		{
 		    "path" : "pages/newsList/newsList",
 		    "style" : {
 		        "navigationBarTitleText" : "新闻动态", //设置页面标题文字
@@ -157,5 +143,43 @@
                 "query" : "" //启动参数，在页面的onLoad函数里面得到
             }
         ]
-    }
+    },
+	"tabBar": {
+		"color":"#999",
+		"selectedColor":"#f00000",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+			   "pagePath": "pages/index/index",
+			   "text": "首页",
+			   "iconPath": "static/images/nabar1.png",
+			   "selectedIconPath": "static/images/nabar1-a.png"
+			},
+			{
+			  "pagePath": "pages/handySevice/handySevice",
+			  "text": "便民服务",
+			  "iconPath": "static/images/nabar2.png",
+			  "selectedIconPath": "static/images/nabar2-a.png"
+			},
+			{
+			  "pagePath": "pages/hotlineIntroduce/hotlineIntroduce",
+			  "text": "热线介绍",
+			  "iconPath": "static/images/nabar3.png",
+			  "selectedIconPath": "static/images/nabar3-a.png"
+			},
+			{
+			  "pagePath": "pages/useHelp/useHelp",
+			  "text": "使用帮助",
+			  "iconPath": "static/images/nabar4.png",
+			  "selectedIconPath": "static/images/nabar4-a.png"
+			},
+			{
+			  "pagePath": "pages/inforRegister/inforRegister",
+			  "text": "注册信息",
+			  "iconPath": "static/images/nabar5.png",
+			  "selectedIconPath": "static/images/nabar5-a.png"
+			}
+		]
+	}
+	
 }

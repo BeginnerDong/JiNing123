@@ -21,17 +21,20 @@
 			<view class="main">内容涉及国家安全、公共安全、经济安全、社会稳定以及国家秘密、商业秘密、个人隐私的信件将不予公开。</view>
 			<view style="width: 100%;height: 30rpx;"></view>
 			
+			<view class="flex flexCenter fixdBtn" style="" >
+				<view class="askquestion flex flexCenter" @click="Router.navigateTo({route:{path:'/pages/askingquestion/askingquestion'}})">
+					<span class="question">我已阅读并同意，继续反映</span>
+				</view>
+			</view>
 			
 		</view>
-		<have-read></have-read>
 	</view>
 </template>
 
 <script>
-	import haveRead from "@/components/haveread/haveread.vue"
 	export default {
 		components: {
-			haveRead
+			// haveRead
 		},
 		data() {
 			return {
@@ -48,4 +51,8 @@
 	.header{text-align: center;padding: 40rpx 0 30rpx;font-size: 30rpx;color: #222222;}
 	.content{font-size: 26rpx;color: #575757;padding:0 30rpx;height: 100%; line-height: 44rpx;padding-bottom:180rpx;}
 	.content .title{font-weight: bold;}
+	
+	.fixdBtn{width: 100%;height: 120rpx;position: fixed;bottom: 0;left: 0;background-color: white;border-top: solid 1px #EFEFEF;}
+	.askquestion{width: 600rpx;height: 80rpx;background: #ca1c1d;border-radius: 10rpx;}
+	.question{font-size: 28rpx;color: #FFFFFF;}
 </style>
