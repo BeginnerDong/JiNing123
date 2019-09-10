@@ -6,19 +6,8 @@
 				<view class="contBox">
 					
 					<view class="hotlilneCont">
-						<view class="title">标题标题标题标题标题标题标题标题</view>
-						<view class="font14">一、标题标题标题标题标题标题标</view>
-						<view class="font12">1、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font12">2、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font12">3、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font14">二、标题标题标题标题标题标题标</view>
-						<view class="font12">1、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font12">2、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font12">3、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font14">三、标题标题标题标题标题标题标</view>
-						<view class="font12">1、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font12">2、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
-						<view class="font12">3、内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
+						<view class="content ql-editor"  v-html="mainData.content">
+						</view>
 					</view>
 				</view>
 			</view>
@@ -27,18 +16,49 @@
 </template>
 
 <script>
-
 	export default {
-		components: {
-			
-		},
+		components: {},
 		data() {
 			return {
-				Router:this.$Router
+				Router: this.$Router,
+				mainData:{}
 			};
 		},
+		onLoad(options) {
+			const self = this;
+
+			self.$Utils.loadAll(['getMainData'], self);
+		},
+
 		methods: {
-		
+
+			getMainData() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					thirdapp_id: 2
+				};
+				postData.getBefore = {
+					caseData: {
+						tableName: 'Label',
+						searchItem: {
+							title: ['=', ['使用帮助']],
+						},
+						middleKey: 'menu_id',
+						key: 'id',
+						condition: 'in',
+					},
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.mainData = res.info.data[0];
+					}
+					self.$Utils.finishFunc('getMainData');
+				};
+				self.$apis.articleGet(postData, callback);
+			},
+
+
 		}
 	}
 </script>

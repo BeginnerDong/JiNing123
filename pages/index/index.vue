@@ -2,18 +2,26 @@
 	<view style="width:100%">
 		<!-- banner部分 -->
 		<view class="banner">
-			<swiper class="swiper-box" indicator-dots="indicatorDots" autoplay="autoplay" interval="interval" duration="duration" indicator-color="#d8d8d8" indicator-active-color="#ca1c1d">
-				<block v-for="(item,index) in labelData" :key="index" >
-					<swiper-item  class="swiper-item" @click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail'}})">
-						<image :src="item.mainImg" class="slide-image"/>
-						<view class="title avoidOverflow">{{item.title}}</view>
+			<swiper class="swiper-box" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="#d8d8d8" indicator-active-color="#ca1c1d">
+				<block v-for="(item,index) in mainData" :key="index" >
+					<swiper-item  class="swiper-item" 
+					@click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail?id='+item.id}})">
+						<image :src="item.mainImg[0].url" class="slide-image"/>
+						<view style="display: inline-block;"    class="title avoidOverflow">
+							<view v-html="item.title" class="avoidOverflow"></view>
+						</view>
+						
 					</swiper-item>
 				</block> 
 			</swiper>
 		</view>
 		<view class="scrollMsg">
 			<image class="icon" src="../../static/images/home-icon1.png" mode=""></image>
-			<view class="avoidOverflow">梁山县小安山镇青堌堆村村民反映，村东头种植的杨树上有许多长毛虫</view>
+			<uni-notice-bar 
+			    show-icon="false" 
+			    scrollable="true" single="true" color="#999"
+			    :text="labelData.description">
+			</uni-notice-bar>
 		</view>
 		
 		<!-- 菜单 -->
@@ -48,35 +56,74 @@
 </template>
 
 <script>
-	
+	import uniNoticeBar from "@/components/uni-notice-bar/uni-notice-bar"
 	export default {
-		data() {
+		components: {
+			uniNoticeBar	
+		},
+		data(){
 			return {
+				mainData:[],
 				Router:this.$Router,
-				labelData:[
-					{
-						mainImg:"../../static/images/banner.png",
-						title:"1.连续坚持迎战台风背后，她们架起一条畅通的道路"
-					},
-					{
-						mainImg:"../../static/images/img1.jpg",
-						title:"2.连续坚持迎战台风背后，她们架起一条畅通的道路"
-					},
-					{
-						mainImg:"../../static/images/home-img.jpg",
-						title:"3.连续坚持迎战台风背后，她们架起一条畅通的道路"
-					}
-				]
+				indicatorDots: false,
+				autoplay: true,
+				interval: 2000,
+				duration: 500,
+				labelData:{}
 			}
 		},
 		
 		onLoad() {
 			const self = this;
-			//self.$Utils.loadAll(['getMainData'], self);
+			console.log(self.$Utils.formatTime())
+			self.$Utils.loadAll(['getMainData','getLabelData'], self);
 		},
 		
 		methods: {
+			getMainData() {
+				const self = this;
+				const postData = {};
 			
+				postData.searchItem = {
+					thirdapp_id:2
+				};
+				postData.getBefore = {
+					caseData: {
+						tableName: 'Label',
+						searchItem: {
+							title: ['=', ['首页轮播']],
+						},
+						middleKey: 'menu_id',
+						key: 'id',
+						condition: 'in',
+					},
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.mainData.push.apply(self.mainData, res.info.data);
+					}
+					self.$Utils.finishFunc('getMainData');
+				};
+				self.$apis.articleGet(postData, callback);
+			},
+			
+			getLabelData() {
+				const self = this;
+				const postData = {};
+			
+				postData.searchItem = {
+					thirdapp_id:2,
+					title:'首页广告'
+				};
+	
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.labelData = res.info.data[0]
+					}
+					self.$Utils.finishFunc('getLabelData');
+				};
+				self.$apis.labelGet(postData, callback);
+			},
 		},
 	}
 </script>

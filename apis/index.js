@@ -17,6 +17,48 @@ export default {
 		};
 		http.HTTP(allParams);
 	},
+	
+	messageGet(param, callback) {
+		
+		var allParams = {
+			url: 'Common/Message/get',
+			type: 'post',
+			noToken: true,
+			data: param,
+			sCallback: function(data) {
+				callback && callback(data);
+			}
+		};
+		http.HTTP(allParams);
+	},
+	
+	messageAdd(param, callback) {
+		
+		var allParams = {
+			url: 'Common/Message/add',
+			type: 'post',
+			noToken: true,
+			data: param,
+			sCallback: function(data) {
+				callback && callback(data);
+			}
+		};
+		http.HTTP(allParams);
+	},
+	
+	messageUpdate(param, callback) {
+		
+		var allParams = {
+			url: 'Common/Message/update',
+			type: 'post',
+			noToken: true,
+			data: param,
+			sCallback: function(data) {
+				callback && callback(data);
+			}
+		};
+		http.HTTP(allParams);
+	},
 
 	registerSuper(param, callback) {
 
@@ -30,12 +72,24 @@ export default {
 		};
 		http.HTTP(allParams);
 	},
+	
+	registerSuper(param, callback) {
+	
+		var allParams = {
+			url: 'Project/Solely/registerSuper',
+			type: 'post',
+			data: param,
+			sCallback: function(data) {
+				callback && callback(data);
+			}
+		};
+		http.HTTP(allParams);
+	},
 
-
-	bindShop(param, callback) {
+	searchQusetion(param, callback) {
 
 		var allParams = {
-			url: 'Project/Solely/bindShop',
+			url: 'Project/Solely/searchQusetion',
 			type: 'post',
 			data: param,
 			sCallback: function(data) {

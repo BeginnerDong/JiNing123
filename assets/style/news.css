@@ -13,7 +13,7 @@
 .articledetail_header{border-bottom: solid 1px #EAEAEA;padding: 30rpx 3%;}
 .articledetail_header_title{font-size: 30rpx;color: #222222;padding-bottom:30rpx;}
 .articledetail_header_date{text-align: right;color: #999999;}
-.article_detail_Cont{padding:30rpx 3%; line-height: 44rpx; font-size: 24rpx;color: #666;}
+.article_detail_Cont{padding:30rpx 3%; line-height: 44rpx;color: #666;}
 .article_detail_Cont view{padding-bottom:20rpx;}
 .article_detail_Cont image{max-width: 100%; margin: 0 auto;}
 .content_title{font-weight: 800;font-size: 26rpx;color: #222222;}

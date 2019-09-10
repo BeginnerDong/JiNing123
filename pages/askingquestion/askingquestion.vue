@@ -4,33 +4,34 @@
 			<view class="list_item flex">
 				<view class="sqr_common">诉求人:</view>
 				<view class="rr sqr_name">
-					<input type="text" placeholder="请输入诉求人姓名">
+					<input type="text" placeholder="请输入诉求人姓名" v-model="submitData.name">
 				</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">来电时间:</span>
 				<view class="rr sqr_time">
-					<input type="date" value="2019-09-14 14:30:09">
+					<input type="date" :value="currentDate" disabled="true">
 				</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">时间:</span>
-				<view class="rr sqr_time flex">
-					<input type="date" value="2019-09-14 14:30:09">
+				<view class="rr sqr_time flex" @click="openDatetimePicker">
+					<input :value="submitData.record_time" disabled="true">
+
 					<image class="arrow" src="../../static/images/appeal-icon1.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">事发地址:</span>
-				<view class="rr sqr_name flex">
-					请选择
+				<view class="rr sqr_name flex" @click="chooseLocation">
+					{{submitData.address!=''?submitData.address:'请选择'}}
 					<image class="arrow" src="../../static/images/appeal-icon1.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">问题标题:</span>
 				<view class="rr sqr_name">
-					<input type="text" placeholder="请输入问题标题">
+					<input type="text" placeholder="请输入问题标题" v-model="submitData.title">
 				</view>
 			</view>
 			<view class="list_item flex">
@@ -38,13 +39,13 @@
 					<span class="sqr_common">反应内容:</span>
 				</view>
 				<view class="sqr_name">
-					<textarea value="" placeholder="请输入问题标题" />
-				</view>
+					<textarea value="" placeholder="请输入问题内容" v-model="submitData.content" />
+					</view>
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">诉求目的:</span>
 				<view class="sqr_name">
-					<input type="text" placeholder="请输入诉求目的">
+					<input type="text" placeholder="请输入诉求目的" v-model="submitData.purpose">
 				</view>
 			</view>
 			<view class="list_item flex">
@@ -54,7 +55,7 @@
 						<view class="uni-list-cell">
 							<view class="uni-list-cell-db">
 								<picker @change="bindPickerChange" :value="index" :range="array">
-									<view class="uni-input">{{array[index]}}</view>
+									<view class="uni-input">{{array[indexLabel]?array[indexLabel]:'请选择'}}</view>
 								</picker>
 							</view>
 						</view>
@@ -65,14 +66,14 @@
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">视频上传:</span>
-				<view class="sqr_video">
+				<view class="sqr_video" @click="upLoadImg('video')">
 					<view style="width: 100%;height: 30rpx;"></view>
 					<image style="width: 156rpx;height:156rpx;" src="../../static/images/appeal-icon3.1.png"></image>
 				</view>
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">文档上传:</span>
-				<view class="sqr_video">
+				<view class="sqr_video" @click="upLoadImg('other')">
 					<view style="width: 100%;height: 30rpx;"></view>
 					<image style="width: 156rpx;height:156rpx;" src="../../static/images/appeal-icon3.png"></image>
 				</view>
@@ -82,10 +83,10 @@
 				<view class="qst">公开意向</view>
 				<view class="r-selt">
 					<view class="selt" @click="change('1')">
-						<image :src="curr==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>公开
+						<image :src="submitData.public==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>公开
 					</view>
 					<view class="selt" @click="change('2')">
-						<image :src="curr==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>不公开
+						<image :src="submitData.public==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>不公开
 					</view>
 					
 				</view>
@@ -94,51 +95,270 @@
 				<view class="qst">是否保密</view>
 				<view class="r-selt">
 					<view class="selt" @click="secrecy('1')">
-						<image :src="index==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'"  mode=""></image>是
+						<image :src="submitData.secret==1?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'"  mode=""></image>是
 					</view>
 					<view class="selt"  @click="secrecy('2')">
-						<image :src="index==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>否
+						<image :src="submitData.secret==2?'../../static/images/appeal-icon4.png':'../../static/images/appeal-icon5.png'" mode=""></image>否
 					</view>
 				</view>
 			</view>
 			<view class="tipsTex">您所提交的事项，信息及办理过程将在网站及手机端公开，可能涉及相关隐私，如涉及他人隐私，须征得本人同意。请慎重选择公开功能。如果您的个人信息需要保密，可以在"是否保密”选项中选择是，我们将对您个人资料采取保密措施。</view>
 			<view class="tabbar flex flexCenter" style="" >
-				<view class="askquestion flex flexCenter">提交</view>
+				<view class="askquestion flex flexCenter" @click="Utils.stopMultiClick(submit)">提交</view>
 			</view>
 		</view>
+		<simple-datetime-picker
+		   ref="myPicker"
+		   @submit="handleSubmit"
+		   :start-year="2000"
+		   :end-year="2030"
+		   color="red"
+		></simple-datetime-picker>
 	</view>
 </template>
 
 <script>
+	import simpleDatetimePicker from "@/components/buuug7-simple-datetime-picker/simple-datetime-picker.vue"
 	export default {
 		components: {
-		
+			simpleDatetimePicker
 		},
 		data() {
 			return {
 				Router:this.$Router,
-				curr:1,
-				index: 0,
-				array: ['请选择','类型一', '类型二', '类型三', '类型四'],
-				
+				Utils:this.$Utils,
+				currentDate: '',
+				array: ['咨询','投诉', '建议', '求助', '表扬','其他'],
+				submitData:{
+					name:'',
+					record_time:'',
+					address:'',
+					title:'',
+					content:'',
+					purpose:'',
+					behaviour:'',
+					mainImg:[],
+					bannerImg:[],
+					public:'2',
+					secret:'2',
+					city_id:'0',
+					country_id:'0',
+					town_id:'0',
+					type:1
+				},
+				indexLabel:''
 			};
 		},
+		
+		
+		onLoad(){
+			const self = this;
+			var date=new Date();		
+			var year=date.getFullYear();
+			var month=date.getMonth()+1;
+			var day=date.getDate();	
+			var hour=date.getHours();
+			var minute=date.getMinutes();
+			var second=date.getSeconds();
+			if (hour<10) {
+				hour='0'+hour;
+			}
+			if (minute<10) {
+				minute='0'+minute;
+			}
+			if (second<10) {
+				second='0'+second;
+			}
+			
+			self.currentDate=year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
+			var res = self.$Token.getProjectToken(function() {
+				self.$Utils.loadAll(['getUserData'], self)
+			});
+			if (res) {
+				self.$Utils.loadAll(['getUserData'], self)
+			};
+		},
+		
 		methods: {
+			
+			getUserData() {
+				const self = this;
+				const postData = {};
+				postData.tokenFuncName = 'getProjectToken';
+				const callback = (res) => {
+					if (res.solely_code==100000) {
+						self.userData = res.info.data[0]
+						if(self.userData.area_id==0){
+							self.$Utils.finishFunc('getUserData');
+							uni.showModal({
+							    title: '提示',
+							    content: '检测到您还未注册，立即注册吗？',
+								confirmColor:'#ca1c1d',
+							    success: function (res) {
+							        if (res.confirm) {
+							            self.Router.reLaunch({route:{path:'/pages/inforRegister/inforRegister'}})
+							        } else if (res.cancel) {
+							            uni.navigateBack({
+							            	delta:1
+							            })
+							        }
+							    }
+							});
+							return
+						}else{
+							self.submitData.city_id = self.userData.city_id;
+							self.submitData.country_id = self.userData.country_id;
+							self.submitData.town_id = self.userData.town_id
+						}
+					}else{
+						self.$Utils.showToast(res.msg, 'none')
+					}
+					self.$Utils.finishFunc('getUserData');
+				};
+				self.$apis.userGet(postData, callback);
+			},
+			
+			upLoadImg(type) {
+				const self = this;
+				
+				wx.showLoading({
+					mask: true,
+					title: '上传中',
+				});
+				const callback = (res) => {
+					console.log('res', res)
+					if (res.solely_code == 100000) {
+						if(type=='video'){
+							self.submitData.mainImg.push(res.info.url)
+						}else if(type=='other'){
+							self.submitData.bannerImg.push(res.info.url)
+						}
+						wx.hideLoading()
+					} else {
+						self.$Utils.showToast('网络故障', 'none')
+					}
+				};
+				wx.chooseImage({
+					count: 1,
+					success: function(res) {
+						console.log(res);
+						var tempFilePaths = res.tempFilePaths;
+						console.log(callback)
+						self.$Utils.uploadFile(tempFilePaths[0], 'file', {
+							tokenFuncName: 'getProjectToken',
+							type:type
+						}, callback)
+					},
+					fail: function(err) {
+						wx.hideLoading();
+					},
+					
+				})
+			},
+			
+			submit() {
+				const self = this;
+				uni.setStorageSync('canClick', false);
+		
+				const pass = self.$Utils.checkComplete(self.submitData);
+				console.log('pass', pass);
+				console.log('self.submitData',self.submitData)
+				if (pass) {						
+					
+					self.messageAdd();
+					
+				} else {
+					uni.setStorageSync('canClick', true);
+					self.$Utils.showToast('请补全信息', 'none')
+				};
+			},
+					
+			messageAdd() {
+				const self = this;
+				const postData = {};
+				postData.tokenFuncName = 'getProjectToken';
+				/* if(!wx.getStorageSync('user_info')||!wx.getStorageSync('user_info').headImgUrl){
+				  postData.refreshToken = true;
+				}; */
+				postData.data = {};
+				postData.data = self.$Utils.cloneForm(self.submitData);
+				const callback = (data) => {				
+					if (data.solely_code == 100000) {	
+						uni.setStorageSync('canClick', true);
+						uni.showModal({
+						    title: '提示',
+						    content: '当前时间'+self.$Utils.formatTime()+'济宁市政务服务热线办公室已查收信件',
+							confirmColor:'#ca1c1d',
+							showCancel:false,
+						    success: function (res) {
+						        if (res.confirm) {
+						            self.Router.reLaunch({route:{path:'/pages/index/index'}})
+						        } else if (res.cancel) {
+						           
+						        }
+						    }
+						});			
+					} else {
+						uni.setStorageSync('canClick', true);
+						self.$Utils.showToast(data.msg, 'none', 1000)
+					}	
+				};
+				self.$apis.messageAdd(postData, callback);
+			},
+			
 			change(curr){
 				const self=this
 				if(curr!=self.curr){
 					self.curr=curr
+					self.submitData.public = self.curr
 				}
 			},
+			
 			secrecy(index){
 				const self=this
 				if(index!=self.index){
-					self.index=index
+					self.index=index;
+					self.submitData.secret = self.index
 				}
 			},
+			
+			openDatetimePicker() {
+				this.$refs.myPicker.show();
+			},
+	
+		  // 关闭picker
+		  closeDatetimePicker() {
+			 this.$refs.myPicker.hide();
+		  },
+	
+		  handleSubmit(e) {
+			  const self = this;
+			 console.log(e); // {year: "2019", month: "07", day: "17", hour: "15", minute: "21"}
+			 self.submitData.record_time = e.year+'-'+e.month+'-'+e.day+' '+e.hour+':'+e.minute;
+			 console.log(self.submitData)
+		  },
+			
+			
+			
+			chooseLocation(){
+				const self = this;
+				uni.chooseLocation({
+				    success: function (res) {
+				        console.log('位置名称：' + res.name);
+				        console.log('详细地址：' + res.address);
+				        console.log('纬度：' + res.latitude);
+				        console.log('经度：' + res.longitude);
+						self.submitData.address = res.address
+				    }
+				});
+			},
+			
+			
 			bindPickerChange: function(e) {
+				const self = this;
 				console.log('picker发送选择改变，携带值为', e.target.value)
-				this.index = e.target.value
+				self.indexLabel = e.target.value;
+				self.submitData.behaviour = self.indexLabel+1
 			}
 		}
 	}

@@ -42,6 +42,9 @@
 .ql-editor  {
   cursor: text;
 }
+.ql-editor img{
+  max-width: 100%;
+}
 .ql-editor p,
 .ql-editor ol,
 .ql-editor ul,

@@ -3,7 +3,7 @@
 		<view class="section">
 			<textarea value placeholder="写出你的评价内容" placeholder-style="color:#999; font-size:28rpx;" />
 			
-			<button class="pjbtn" type="button">提交</button>
+			<button class="pjbtn" type="button" @click="Utils.stopMultiClick(messageAdd)">提交</button>
 		</view>
 		
 		<view class="alertBox" v-if="!is_show">
@@ -24,13 +24,53 @@
 			return {
 				is_show:false,
 				Router:this.$Router,
+				Utils:this.$Utils,
+				submitData:{
+					content:'',
+					type:2
+				}
 			}
 		},
 		methods: {
 			closeAlert(){
 				const self=this;
 				self.is_show=!self.is_show
-			}
+			},
+			
+			
+					
+			messageAdd() {
+				const self = this;
+				uni.setStorageSync('canClick', false);
+				if(self.submitData.content==''){
+					uni.setStorageSync('canClick', true);
+					self.$Utils.showToast('请填写评价内容');
+					return
+				}
+				const postData = {};
+			
+				postData.tokenFuncName = 'getProjectToken';
+				/* if(!wx.getStorageSync('user_info')||!wx.getStorageSync('user_info').headImgUrl){
+				  postData.refreshToken = true;
+				}; */
+				postData.data = {};
+				postData.data = self.$Utils.cloneForm(self.submitData);
+				const callback = (data) => {				
+					if (data.solely_code == 100000) {	
+						uni.setStorageSync('canClick', true);
+						self.$Utils.showToast('提交成功','none');
+						setTimeout(function() {
+							uni.navigateBack({
+								delta:1
+							})
+						}, 800);
+					} else {
+						uni.setStorageSync('canClick', true);
+						self.$Utils.showToast(data.msg, 'none', 1000)
+					}	
+				};
+				self.$apis.messageAdd(postData, callback);
+			},
 		}
 			
 	};

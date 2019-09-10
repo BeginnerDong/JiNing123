@@ -1,41 +1,76 @@
 <template>
 	<!-- content部分 -->
 	<view class="article_detail">
-		<view @click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail'}})" :key="index" v-for="(item,index) in article_list" class="article_box">
+		<view @click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail?id='+item.id}})" 
+		:key="index" v-for="(item,index) in mainData" class="article_box">
 			<view class="article_img">
-				<image src="../../static/images/article-icon.jpg"></image>
+				<image :src="item.mainImg[0].url"></image>
 			</view>
 			<view class="article_detail_box">
-				<view class="article_detail_title avoidOverflow">济宁市公共交通集团有限公司党委书记、董事长马中阁接听政务热线</view>
-				<view class="article_detail_main avoidOverflow2">7月31日，济宁市公共交通集团有限公司党委书记、董事长马中阁带领技术装备部、企业管理规划部、运营管理部、稽查管理部、安全管理部、客服管理部到市政务热线服务中心接听群众来话，现场受理有关接听城区公交线路设置、公交车班次间隔时间长等方面问题5件。</view>
-				<view class="article_detail_date">2019-5-23</view>
+				<view class="article_detail_title avoidOverflow">{{item.title}}</view>
+				<view class="article_detail_main avoidOverflow2">{{item.description}}</view>
+				<view class="article_detail_date">{{item.create_time}}</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	
 	export default {
-		components: {
-			
-		},
 		data() {
 			return {
 				Router:this.$Router,
-				article_list:[
-					{},
-					{},
-					{},
-					{},
-					{},
-					{},
-					{},
-					{},
-				]
+				mainData:[]
 			}
-		}
+		},
+		
+		onLoad() {
+			const self = this;
+			self.paginate = self.$Utils.cloneForm(self.$AssetsConfig.paginate);
+			self.$Utils.loadAll(['getMainData'], self);
+		},
+		
+		onReachBottom() {
+			console.log('onReachBottom')
+			const self = this;
+			if (!self.isLoadAll && uni.getStorageSync('loadAllArray')) {
+				self.paginate.currentPage++;
+				self.getMainData()
+			};
+		},
+		
+		methods: {
+
 			
+			
+			getMainData() {
+				const self = this;
+				const postData = {};
+				postData.paginate = self.$Utils.cloneForm(self.paginate);
+				postData.searchItem = {
+					thirdapp_id:2
+				};
+				postData.getBefore = {
+					caseData: {
+						tableName: 'Label',
+						searchItem: {
+							title: ['=', ['政策法规']],
+						},
+						middleKey: 'menu_id',
+						key: 'id',
+						condition: 'in',
+					},
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.mainData.push.apply(self.mainData, res.info.data);
+					}
+					self.$Utils.finishFunc('getMainData');
+				};
+				self.$apis.articleGet(postData, callback);
+			},
+
+		},
 	};
 </script>
 

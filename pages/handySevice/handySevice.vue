@@ -1,13 +1,11 @@
 <template>
 	<view>
 		<view class="pageBjH">
-			<image class="bjImg" src="../../static/images/img1.png" mode=""></image>
+			<image class="bjImg" :src="mainData.mainImg[0].url" mode=""></image>
 			<view class="cont_BjH">
 				<view class="contBox">
 					<view class="handyCont">
-						<view class="item" v-for="(item,index) in handyDate" :key="index">
-							<view class="name">{{item.name}}</view>
-							<view class="phone">{{item.phone}}</view>
+						<view class="content ql-editor"  v-html="mainData.content">
 						</view>
 					</view>
 				</view>
@@ -41,11 +39,46 @@
 					{name:"公交服务热线",phone:"2350000"},
 					{name:"济宁供电公司客服电话",phone:"8395598"},
 					{name:"中山税务服务热线",phone:"2321111"}
-				]
+				],
+				
+				mainData:{}
 			};
 		},
-		methods: {
+		onLoad(options) {
+			const self = this;
+	
+			self.$Utils.loadAll(['getMainData'], self);
+		},
 		
+		methods: {
+			
+			getMainData() {
+				const self = this;
+				const postData = {};
+				postData.searchItem = {
+					thirdapp_id:2
+				};
+				postData.getBefore = {
+					caseData: {
+						tableName: 'Label',
+						searchItem: {
+							title: ['=', ['便民服务']],
+						},
+						middleKey: 'menu_id',
+						key: 'id',
+						condition: 'in',
+					},
+				};
+				const callback = (res) => {
+					if (res.info.data.length > 0) {
+						self.mainData = res.info.data[0];
+					}
+					self.$Utils.finishFunc('getMainData');
+				};
+				self.$apis.articleGet(postData, callback);
+			},
+			
+			
 		}
 	}
 </script>
