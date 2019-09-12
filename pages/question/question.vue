@@ -1,10 +1,12 @@
 <template>
 	<view>
 		<!-- search部分 -->
-		<view class="search flex flexCenter" style="background: #f5f5f5;" @click="search()">
-			<input class="searchword" type="text" placeholder="请输入关键词" v-model="title"/>
-			<view class="searchIcon">
-				<image src="../../static/images/search-icon1.png" style="width: 100%;height: 100%;"></image>
+		<view class="search flex" style="background: #f5f5f5;" @click="search()">
+			<view class="cont flexRowBetween">
+				<input class="searchword" type="text" placeholder="请输入关键词" v-model="title"/>
+				<view class="searchIcon">
+					<image src="../../static/images/search-icon1.png" ></image>
+				</view>
 			</view>
 		</view>
 		<!-- content部分 -->

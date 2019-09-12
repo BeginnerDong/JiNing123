@@ -7,7 +7,7 @@
 					<swiper-item  class="swiper-item" 
 					@click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail?id='+item.id}})">
 						<image :src="item.mainImg[0].url" class="slide-image"/>
-						<view style="display: flex;"    class="title avoidOverflow">
+						<view style="display: flex;" class="title avoidOverflow">
 							<view style="width: 79%;overflow: hidden;padding: 0 10px;">
 								<view v-html="item.title"></view>
 							</view>
@@ -133,7 +133,6 @@
 
 <style scoped>
 	@import url("../../assets/style/public.css");
-	page{padding-bottom: 140rpx;}
 	  /* banner部分 */
 	.banner{height: 400rpx;} 
 	.banner .swiper-box{height: 100%;}
@@ -146,8 +145,8 @@
 	.scrollMsg .icon{ width: 42rpx; height: 38rpx;position: absolute;top: 21rpx;left: 3%;}
 	
 	.inde-nav{display: flex;flex-wrap: wrap;}
-	.inde-nav .item{width: 33.3%;padding:50rpx 0; text-align: center;border-right: 2rpx solid #e7e7e7;border-bottom:2rpx solid #e7e7e7 ;box-sizing: border-box;}
-	.inde-nav .item .icon{width:70rpx; height: 70rpx; display: block;margin: 0 auto;}
-	.inde-nav .item .title{font-size: 28rpx; margin-top: 20rpx;}
+	.inde-nav .item{width: 33.3%;padding:94rpx 0; text-align: center;border-right: 2rpx solid #e7e7e7;border-bottom:2rpx solid #e7e7e7 ;box-sizing: border-box;}
+	.inde-nav .item .icon{width:80rpx; height: 80rpx; display: block;margin: 0 auto;}
+	.inde-nav .item .title{font-size: 28rpx; margin-top: 26rpx;}
 		
 </style>

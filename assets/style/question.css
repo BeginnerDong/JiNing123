@@ -18,9 +18,12 @@
 	.lookdetail image{width: 12rpx;height: 20rpx;margin-right:20rpx;margin-left:8rpx; display: block; margin-top: 4rpx;}
 	
 	/* search部分 */
-	.search{width: 100%;height: 120rpx;}
-	.searchword{background:#ffffff;width: 690rpx;height: 60rpx;font-size: 24rpx;border: solid 1px #999999;text-indent: 20rpx;border-radius: 10rpx;position: relative;}
-	.searchIcon{width: 38rpx;height: 38rpx;position: absolute;right: 8%;}
+	.search{width: 100%;height: 120rpx;padding: 0 5%;box-sizing: border-box;}
+	.search .cont{background:#ffffff;width: 100%;height: 60rpx;font-size: 24rpx;border: solid 1px #999999;border-radius: 10rpx;position: relative;box-sizing: border-box;}
+	.searchword{width: 85%;height: 60rpx;font-size: 24rpx;padding: 0 20rpx;box-sizing: border-box;}
+	
+	.searchIcon{width: 15%;height: 60rpx;position: absolute;right: 0; display: flex;align-items: center;}
+	.searchIcon image{width: 40rpx; height: 38rpx; display: block;margin: 0 auto;}
 	
 	.my_name{font-size: 28rpx;color: #666666;margin-left: 20rpx;}
 	.my_info_complete{font-size: 24rpx;color: #1095f9;}
