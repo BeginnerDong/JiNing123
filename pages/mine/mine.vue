@@ -2,9 +2,11 @@
 	<view>
 		<!-- header部分 -->
 		<view class="header flex">
-			<image class="my_icon" src="../../static/images/about-img.png" style="width: 140rpx;height: 140rpx;"></image>
+			<view class="my_icon"  style="width: 140rpx;height: 140rpx;border-radius: 50%;overflow: hidden;">
+				<open-data type="userAvatarUrl"></open-data>
+			</view>
 		</view>
-		<view class="my_name">快乐的人</view>
+		<view class="my_name"><open-data type="userNickName"></open-data></view>
 		<view class="my_list">
 			<view class="box" :key="index" v-for="(item,index) in my_list" @click="goPage(item.my_key)">
 				<view class="my_list_box flex">

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="section">
-			<textarea value placeholder="写出你的评价内容" placeholder-style="color:#999; font-size:28rpx;" />
+			<textarea value placeholder="写出你的评价内容" v-model="submitData.content" placeholder-style="color:#999; font-size:28rpx;" />
 			
 			<button class="pjbtn" type="button" @click="Utils.stopMultiClick(messageAdd)">提交</button>
 		</view>

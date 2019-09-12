@@ -39,8 +39,11 @@
 					
 				</view>
 			</view>
-			<view>
+			<view v-if="!hasRegister">
 				<button class="submitBtn" type="submit" open-type="getUserInfo"  @getuserinfo="Utils.stopMultiClick(submit)">提交</button>
+			</view>
+			<view v-else>
+				<button class="submitBtn" type="submit" style="background: #AAAAAA;">您已注册</button>
 			</view>
 		</view>
 		<tki-tree ref="tkitree" :range="siteData" rangeKey="title" confirmColor="#4e8af7"  @confirm="treeConfirm" @cancel="treeCancel"/>
@@ -70,7 +73,8 @@
 					country_id:'0',
 					town_id:'',
 					area_id:'0'
-				}
+				},
+				hasRegister:false
 			};
 		},
 
@@ -78,14 +82,34 @@
 			const self = this;
 			
 			var res = self.$Token.getProjectToken(function() {
-				self.$Utils.loadAll(['getSiteData'], self)
+				self.$Utils.loadAll(['getSiteData','getUserData'], self)
 			});
 			if (res) {
-				self.$Utils.loadAll(['getSiteData'], self)
+				self.$Utils.loadAll(['getSiteData','getUserData'], self)
 			};
 		},
 
 		methods: {
+			
+			getUserData() {
+				const self = this;
+				const postData = {};			
+				postData.tokenFuncName = 'getProjectToken';
+				const callback = (res) => {
+					if (res.solely_code==100000) {
+						self.userData = res.info.data[0]
+						if(self.userData.name!=''){
+							self.hasRegister = true
+						}
+					}else{
+						self.$Utils.showToast(res.msg, 'none')
+					}
+					self.$Utils.finishFunc('getUserData');
+				};
+				self.$apis.userGet(postData, callback);
+			},
+			
+			
 			// 确定回调事件
 			treeConfirm(e){
 				const self = this;
@@ -198,9 +222,7 @@
 					if (data.solely_code == 100000) {					
 						self.$Utils.showToast('注册成功', 'none');
 						setTimeout(function() {
-							uni.navigateBack({
-								delta:1
-							})
+							self.Router.reLaunch({route:{path:'/pages/index/index'}})
 						}, 800);
 					} else {
 						uni.setStorageSync('canClick', true);

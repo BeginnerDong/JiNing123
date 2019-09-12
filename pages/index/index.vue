@@ -7,8 +7,11 @@
 					<swiper-item  class="swiper-item" 
 					@click="Router.navigateTo({route:{path:'/pages/articledetail/articledetail?id='+item.id}})">
 						<image :src="item.mainImg[0].url" class="slide-image"/>
-						<view style="display: inline-block;"    class="title avoidOverflow">
-							<view v-html="item.title" class="avoidOverflow"></view>
+						<view style="display: flex;"    class="title avoidOverflow">
+							<view style="width: 79%;overflow: hidden;padding: 0 10px;">
+								<view v-html="item.title"></view>
+							</view>
+							<view style="display: inline-block;width: 21%;">. . . . . .</view>
 						</view>
 						
 					</swiper-item>
@@ -136,7 +139,7 @@
 	.banner .swiper-box{height: 100%;}
 	.banner .swiper-box .swiper-item{ position: relative;}
 	.banner .swiper-box image{width: 100%;height: 100%;}
-	.banner .swiper-box .title{position: absolute;bottom: 0;left: 0;width: 100%;padding: 0 180rpx 0 3%;box-sizing: border-box;height: 80rpx;line-height: 80rpx;background: rgba(0,0,0,0.5);color: #fff;font-size: 28rpx;}
+	.banner .swiper-box .title{position: absolute;bottom: 0;left: 0;width: 100%;box-sizing: border-box;height: 80rpx;line-height: 80rpx;background: rgba(0,0,0,0.5);color: #fff;font-size: 28rpx;}
 	.banner .swiper-box .swiper-dots-horizontal{bottom: 50%;}
 	
 	.scrollMsg{line-height: 80rpx;padding: 0 3% 0 90rpx;position: relative;height: 80rpx;background: #f3faff;border-bottom: 2rpx solid #e7e7e7;font-size: 26rpx;color: #666;}

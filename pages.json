@@ -53,7 +53,7 @@
 		{
 		    "path" : "pages/askingquestion/askingquestion",
 		    "style" : {
-		        "navigationBarTitleText" : "提问题", //设置页面标题文字
+		        "navigationBarTitleText" : "诉求提交", //设置页面标题文字
 		        "onReachBottomDistance" : 100
 		    }
 		},
@@ -144,6 +144,7 @@
             }
         ]
     },
+	
 	"tabBar": {
 		"color":"#999",
 		"selectedColor":"#f00000",
@@ -180,6 +181,11 @@
 			  "selectedIconPath": "static/images/nabar5-a.png"
 			}
 		]
+	},
+	"permission": {
+	  "scope.userLocation": {
+	    "desc": "你的位置信息将用于小程序位置接口的效果展示"
+	  }
 	}
 	
 }

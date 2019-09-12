@@ -14,7 +14,7 @@
 				<view class="content_box_question">
 					<image class="icon" src="../../static/images/appeal-icon1.png"></image>
 					<view class="title">{{item.title}}</view>
-					<view class="text overflow2">{{item.content}}</view>
+					<view class="text overflow2" v-html="item.content"></view>
 				</view>
 				<view class="lookdetail">
 					查看详情

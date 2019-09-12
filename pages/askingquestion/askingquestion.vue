@@ -23,7 +23,7 @@
 			</view>
 			<view class="list_item flex">
 				<span class="sqr_common">事发地址:</span>
-				<view class="rr sqr_name flex" @click="chooseLocation">
+				<view class="rr sqr_name flex" @click="chooseAddress">
 					{{submitData.address!=''?submitData.address:'请选择'}}
 					<image class="arrow" src="../../static/images/appeal-icon1.1.png"></image>
 				</view>
@@ -66,16 +66,21 @@
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">视频上传:</span>
-				<view class="sqr_video" @click="upLoadImg('video')">
+				<view class="sqr_video">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" src="../../static/images/appeal-icon3.1.png"></image>
+					<image style="width: 156rpx;height:156rpx;"  @click="upLoadImg('video')" src="../../static/images/appeal-icon3.1.png" 
+					v-if="submitData.mainImg.length==0"></image>
+					<video style="width: 156rpx;height:156rpx;" :src="submitData.mainImg[0].url" v-if="submitData.mainImg.length>0"></video>
 				</view>
 			</view>
 			<view class="list_item">
 				<span class="sqr_common">文档上传:</span>
 				<view class="sqr_video" @click="upLoadImg('other')">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" src="../../static/images/appeal-icon3.png"></image>
+					<image style="width: 156rpx;height:156rpx;" v-if="submitData.bannerImg.length==0" 
+					src="../../static/images/appeal-icon3.png"></image>
+					<image style="width: 156rpx;height:156rpx;" v-if="submitData.bannerImg.length>0"
+					:src="submitData.bannerImg[0].url"></image>
 				</view>
 			</view>
 			
@@ -238,22 +243,42 @@
 						self.$Utils.showToast('网络故障', 'none')
 					}
 				};
-				wx.chooseImage({
-					count: 1,
-					success: function(res) {
-						console.log(res);
-						var tempFilePaths = res.tempFilePaths;
-						console.log(callback)
-						self.$Utils.uploadFile(tempFilePaths[0], 'file', {
-							tokenFuncName: 'getProjectToken',
-							type:type
-						}, callback)
-					},
-					fail: function(err) {
-						wx.hideLoading();
-					},
-					
-				})
+				if(type=='video'){
+					wx.chooseVideo({
+						count: 1,
+						success: function(res) {
+							console.log(res);
+							var tempFilePaths = res.tempFilePath;
+							console.log(callback)
+							self.$Utils.uploadFile(tempFilePaths, 'file', {
+								tokenFuncName: 'getProjectToken',
+								type:type
+							}, callback)
+						},
+						fail: function(err) {
+							wx.hideLoading();
+						},
+						
+					})
+				}else{
+					wx.chooseImage({
+						count: 1,
+						success: function(res) {
+							console.log(res);
+							var tempFilePaths = res.tempFilePaths;
+							console.log(callback)
+							self.$Utils.uploadFile(tempFilePaths[0], 'file', {
+								tokenFuncName: 'getProjectToken',
+								type:type
+							}, callback)
+						},
+						fail: function(err) {
+							wx.hideLoading();
+						},
+						
+					})
+				}
+				
 			},
 			
 			submit() {
@@ -338,9 +363,46 @@
 			 console.log(self.submitData)
 		  },
 			
+			chooseAddress(e) {
+				const self = this;
+				let chooseLocation = () => { /* 选择地址 */
+				uni.chooseLocation({
+					success: (res) => {
+						self.submitData.address = res.address
+					},
+					fail: (e) => {
+						console.log(e, '拒绝授权')
+						this.mark = 1
+					}
+				});
+			}
+			let openSetting = () => { /* 打开允许授权设置 */
+				uni.openSetting({
+					success: (res) => {
+						console.log(res.authSetting)
+					}
+				});
+			}
+			if (this.mark === 1) {
+				uni.getSetting({
+					success: (res) => {
+						let locaAuth = res.authSetting['scope.userLocation']
+						if (locaAuth) {/* 判断位置是否已经授权，是选择地图位置点击取消触发的fail，再选择位置 */
+						console.log('地图点击取消')
+							chooseLocation()
+						}
+						if (!locaAuth) { /* 如果地理位置没授权 */
+							openSetting()
+						}
+					}
+				})
+			}
+			chooseLocation()
+		},
 			
 			
 			chooseLocation(){
+				
 				const self = this;
 				uni.chooseLocation({
 				    success: function (res) {
@@ -349,7 +411,23 @@
 				        console.log('纬度：' + res.latitude);
 				        console.log('经度：' + res.longitude);
 						self.submitData.address = res.address
-				    }
+				    },
+					fail() {
+						uni.authorize({
+						    scope: 'scope.userLocation',
+						    success() {
+						      uni.chooseLocation({
+						          success: function (res) {
+						              console.log('位置名称：' + res.name);
+						              console.log('详细地址：' + res.address);
+						              console.log('纬度：' + res.latitude);
+						              console.log('经度：' + res.longitude);
+						      		self.submitData.address = res.address
+						          },
+								})
+						    }
+						})
+					}
 				});
 			},
 			

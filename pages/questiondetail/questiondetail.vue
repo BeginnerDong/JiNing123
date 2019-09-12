@@ -6,8 +6,8 @@
 			<view class="header_title avoidOverflow">{{mainData.title}}</view>
 			
 			<view style="width: 100%;height: 30rpx;"></view>
-			<view class="header_content avoidOverflow4">
-				{{mainData.content}}
+			<view class="header_content avoidOverflow4" v-html="mainData.content">
+				
 			</view>
 			
 			<view style="width: 100%;height: 30rpx;"></view>

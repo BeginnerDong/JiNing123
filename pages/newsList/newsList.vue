@@ -7,7 +7,7 @@
 				<image :src="item.mainImg[0].url"></image>
 			</view>
 			<view class="article_detail_box">
-				<view class="article_detail_title avoidOverflow">{{item.title}}</view>
+				<view class="article_detail_title avoidOverflow" v-html="item.title"></view>
 				<view class="article_detail_main avoidOverflow2">{{item.description}}</view>
 				<view class="article_detail_date">{{item.create_time}}</view>
 			</view>
