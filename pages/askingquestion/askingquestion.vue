@@ -36,7 +36,7 @@
 			</view>
 			<view class="list_item flex">
 				<view class="contact_area">
-					<span class="sqr_common">反应内容:</span>
+					<span class="sqr_common">反映内容:</span>
 				</view>
 				<view class="sqr_name">
 					<textarea value="" placeholder="请输入问题内容" v-model="submitData.content" />
@@ -77,10 +77,10 @@
 				<span class="sqr_common">文档上传:</span>
 				<view class="sqr_video" @click="upLoadImg('other')">
 					<view style="width: 100%;height: 30rpx;"></view>
-					<image style="width: 156rpx;height:156rpx;" v-if="submitData.bannerImg.length==0" 
+					<image style="width: 156rpx;height:156rpx;" v-if="submitData.banner_Img.length==0" 
 					src="../../static/images/appeal-icon3.png"></image>
-					<image style="width: 156rpx;height:156rpx;" v-if="submitData.bannerImg.length>0"
-					:src="submitData.bannerImg[0].url"></image>
+					<image style="width: 156rpx;height:156rpx;" v-if="submitData.banner_Img.length>0"
+					:src="submitData.banner_Img[0].url"></image>
 				</view>
 			</view>
 			
@@ -112,6 +112,8 @@
 				<view class="askquestion flex flexCenter" @click="Utils.stopMultiClick(submit)">提交</view>
 			</view>
 		</view>
+		<button>
+		</button>
 		<simple-datetime-picker
 		   ref="myPicker"
 		   @submit="handleSubmit"
@@ -141,9 +143,9 @@
 					title:'',
 					content:'',
 					purpose:'',
-					behaviour:'',
+					behavior:'',
 					mainImg:[],
-					bannerImg:[],
+					banner_Img:[],
 					public:'2',
 					secret:'2',
 					city_id:'0',
@@ -236,7 +238,7 @@
 						if(type=='video'){
 							self.submitData.mainImg.push(res.info.url)
 						}else if(type=='other'){
-							self.submitData.bannerImg.push(res.info.url)
+							self.submitData.banner_Img.push(res.info.url)
 						}
 						wx.hideLoading()
 					} else {
@@ -284,8 +286,10 @@
 			submit() {
 				const self = this;
 				uni.setStorageSync('canClick', false);
-		
-				const pass = self.$Utils.checkComplete(self.submitData);
+				var newObject = self.$Utils.cloneForm(self.submitData);
+				delete newObject.mainImg;
+				delete newObject.banner_Img;
+				const pass = self.$Utils.checkComplete(newObject);
 				console.log('pass', pass);
 				console.log('self.submitData',self.submitData)
 				if (pass) {						
@@ -365,40 +369,82 @@
 			
 			chooseAddress(e) {
 				const self = this;
-				let chooseLocation = () => { /* 选择地址 */
-				uni.chooseLocation({
-					success: (res) => {
-						self.submitData.address = res.address
-					},
+				uni.authorize({
+				    scope: 'scope.userLocation',
+				    success() {
+				        uni.chooseLocation({
+				        	success: (res) => {
+				        		console.log(111)
+				        		self.submitData.address = res.address
+				        	},
+				        	fail: (e) => {
+				        		uni.getSetting({
+				        			success: (res) => {
+				        				console.log(res)
+				        				let locaAuth = res.authSetting['scope.userLocation']
+				        				if (locaAuth) {/* 判断位置是否已经授权，是选择地图位置点击取消触发的fail，再选择位置 */
+				        					console.log('地图点击取消')
+				        					uni.chooseLocation({
+				        						success: (res) => {
+				        							self.submitData.address = res.address
+				        						},
+				        					});
+				        				}
+				        				if (!locaAuth) { /* 如果地理位置没授权 */
+				        					console.log(222)
+				        					uni.showModal({
+				        					    title: '提示',
+				        					    content: '需要授权位置信息',
+				        						confirmColor:'#ca1c1d',
+				        						showCancel:true,
+				        					    success: function (res) {
+				        					        if (res.confirm) {
+				        					            uni.openSetting({
+				        					            	success: (res) => {
+				        					            		console.log(res.authSetting)
+				        					            	},
+				        					            	fail: (res) => {
+				        					            		console.log(res)
+				        					            	},
+				        					            });
+				        					        } else if (res.cancel) {
+				        					           
+				        					        }
+				        					    }
+				        					});			
+				        					
+				        				
+				        				}
+				        			}
+				        		})
+				        	}
+				        });
+				    },
 					fail: (e) => {
-						console.log(e, '拒绝授权')
-						this.mark = 1
-					}
-				});
-			}
-			let openSetting = () => { /* 打开允许授权设置 */
-				uni.openSetting({
-					success: (res) => {
-						console.log(res.authSetting)
-					}
-				});
-			}
-			if (this.mark === 1) {
-				uni.getSetting({
-					success: (res) => {
-						let locaAuth = res.authSetting['scope.userLocation']
-						if (locaAuth) {/* 判断位置是否已经授权，是选择地图位置点击取消触发的fail，再选择位置 */
-						console.log('地图点击取消')
-							chooseLocation()
-						}
-						if (!locaAuth) { /* 如果地理位置没授权 */
-							openSetting()
-						}
+						uni.showModal({
+						    title: '提示',
+						    content: '需要授权位置信息',
+							confirmColor:'#ca1c1d',
+							showCancel:true,
+						    success: function (res) {
+						        if (res.confirm) {
+						            uni.openSetting({
+						            	success: (res) => {
+						            		console.log(res.authSetting)
+						            	},
+						            	fail: (res) => {
+						            		console.log(res)
+						            	},
+						            });
+						        } else if (res.cancel) {
+						           
+						        }
+						    }
+						});
 					}
 				})
-			}
-			chooseLocation()
-		},
+				
+			},
 			
 			
 			chooseLocation(){
@@ -436,7 +482,7 @@
 				const self = this;
 				console.log('picker发送选择改变，携带值为', e.target.value)
 				self.indexLabel = e.target.value;
-				self.submitData.behaviour = self.indexLabel+1
+				self.submitData.behavior = parseInt(e.target.value)+1
 			}
 		}
 	}

@@ -94,7 +94,7 @@ export default {
 			};
 		};
 		wx.uploadFile({
-			url: 'http://106.12.155.217/jining/public/index.php/api/v1/Base/FtpFile/upload',
+			url: 'https://jining.solelytech.com/api/public/index.php/api/v1/Base/FtpFile/upload',
 			filePath: filePath,
 			name: name,
 			formData: formData,

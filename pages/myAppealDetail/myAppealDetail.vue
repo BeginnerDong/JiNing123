@@ -17,7 +17,7 @@
 		<view class="sq_response">
 			<view class="sq_response_title"><span class="sq_response_titlebox titXian">政府回复</span></view>
 			<view style="width: 100%;height: 20rpx;"></view>
-			<view class="sq_response_content avoidOverflow3" v-if="mainData.passage1!=''">
+			<view class="sq_response_content" v-if="mainData.passage1!=''">
 				{{mainData.passage1}}
 			</view>
 			<view v-if="mainData.passage1==''">

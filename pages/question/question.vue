@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<!-- search部分 -->
-		<view class="search flex" style="background: #f5f5f5;" @click="search()">
+		<view class="search flex" style="background: #f5f5f5;">
 			<view class="cont flexRowBetween">
 				<input class="searchword" type="text" placeholder="请输入关键词" v-model="title"/>
-				<view class="searchIcon">
+				<view class="searchIcon"  @click="search()">
 					<image src="../../static/images/search-icon1.png" ></image>
 				</view>
 			</view>

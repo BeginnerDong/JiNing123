@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="pageBjH">
-			<image class="bjImg" src="../../static/images/img3.png" mode=""></image>
+			<image class="bjImg" :src="mainData.mainImg[0].url" mode=""></image>
 			<view class="cont_BjH">
 				<view class="contBox">
 					

@@ -24,11 +24,16 @@
 					<input type="number" maxlength="11" placeholder="请输入联系电话" v-model="submitData.phone">
 				</view>
 			</view>
-			<view class="list_item flex">
+			<view class="list_item flex" v-if="!hasRegister">
 				<span class="sqr_common import">验证码:</span>
 				<view class="sqr_name phoneNum" style="display: flex; justify-content: space-between;">
-					<input type="text" placeholder="请输入验证码" style="display: block; width:260rpx;margin: 0;">
-					<view class="yzm">获取验证码</view>
+					<input type="number" v-model="submitData.code" placeholder="请输入验证码" style="display: block; width:260rpx;margin: 0;">
+					<view @click="sendCode" v-if="!hasSend" class="yzm">
+						{{text}}
+					</view>
+					<view  v-else  class="yzm">
+						{{text}}
+					</view>
 				</view>
 			</view>
 			<view class="list_item flex">
@@ -42,10 +47,11 @@
 			<view v-if="!hasRegister">
 				<button class="submitBtn" type="submit" open-type="getUserInfo"  @getuserinfo="Utils.stopMultiClick(submit)">提交</button>
 			</view>
-			<view v-else>
+			<view v-if="hasRegister">
 				<button class="submitBtn" type="submit" style="background: #AAAAAA;">您已注册</button>
 			</view>
 		</view>
+	
 		<tki-tree ref="tkitree" :range="siteData" rangeKey="title" confirmColor="#4e8af7"  @confirm="treeConfirm" @cancel="treeCancel"/>
 	</view>
 	
@@ -72,9 +78,13 @@
 					city_id:'0',
 					country_id:'0',
 					town_id:'',
-					area_id:'0'
+					area_id:'0',
+					code:''
 				},
-				hasRegister:false
+				hasRegister:false,
+				currentTime:61,
+				text:'获取验证码',
+				hasSend:false,
 			};
 		},
 
@@ -91,15 +101,94 @@
 
 		methods: {
 			
+			sendCode(){
+				var self = this;
+				console.log(111)
+				if(self.hasSend){
+					return;
+				};
+				var phone = self.submitData.phone;
+				
+				if (phone.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(phone)) {
+					
+					self.$Utils.showToast('请输入正确的手机号', 'none');
+					return;
+				}
+				var postData = {
+					phone:self.submitData.phone
+				};
+				var callback = function(res){
+					if(res.solely_code==100000){
+						self.hasSend = true;
+						var interval = setInterval(function() {
+							self.currentTime--; //每执行一次让倒计时秒数减一
+						
+							self.text=self.currentTime + 's';//按钮文字变成倒计时对应秒数
+							
+							//如果当秒数小于等于0时 停止计时器 且按钮文字变成重新发送 且按钮变成可用状态 倒计时的秒数也要恢复成默认秒数 即让获取验证码的按钮恢复到初始化状态只改变按钮文字
+							if (self.currentTime <= 0) {
+								clearInterval(interval)
+								
+								self.hasSend = false;
+								self.text='重新发送';
+								self.currentTime= 61;
+								
+							}
+							
+						}, 1000);
+					}else{
+						self.$Utils.showToast('发送失败', 'none');
+					};
+				};
+				self.$apis.codeGet(postData, callback);
+			},
+			
 			getUserData() {
 				const self = this;
 				const postData = {};			
 				postData.tokenFuncName = 'getProjectToken';
+				postData.getAfter = {
+					city:{
+						tableName:'Label',
+						middleKey:'city_id',
+						key:'id',
+						searchItem:{
+							status:1
+						},
+						condition:'=',
+						info:['title']
+					},
+					country:{
+						tableName:'Label',
+						middleKey:'country_id',
+						key:'id',
+						searchItem:{
+							status:1
+						},
+						condition:'=',
+						info:['title']
+					},
+					town:{
+						tableName:'Label',
+						middleKey:'town_id',
+						key:'id',
+						searchItem:{
+							status:1
+						},
+						condition:'=',
+						info:['title']
+					}
+				};
 				const callback = (res) => {
 					if (res.solely_code==100000) {
 						self.userData = res.info.data[0]
-						if(self.userData.name!=''){
+						self.submitData.name = self.userData.info.name;
+						self.submitData.phone = self.userData.info.phone;
+						self.submitData.gender = self.userData.info.gender;
+						self.address = self.userData.city.title+self.userData.country.title+self.userData.town.title!=null?self.userData.city.title+self.userData.country.title+self.userData.town.title:''
+						if(self.userData.info.name!=''){
 							self.hasRegister = true
+							
 						}
 					}else{
 						self.$Utils.showToast(res.msg, 'none')
@@ -204,6 +293,10 @@
 				}; */
 				postData.data = {};
 				postData.data = self.$Utils.cloneForm(self.submitData);
+				postData.smsAuth = {
+					phone:self.submitData.phone,						
+					code:self.submitData.code					,
+				};
 				postData.saveAfter = [{
 					tableName: 'User',
 					FuncName: 'update',

@@ -63,7 +63,11 @@
             "minified" : true
         },
         "usingComponents" : false,
-        "permission" : {}
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "获取用户位置"
+            }
+        }
     },
     "h5" : {
         "title" : "本地捕手",

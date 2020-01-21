@@ -156,7 +156,7 @@
 	.scrollMsg{line-height: 80rpx;padding: 0 3% 0 90rpx;position: relative;height: 80rpx;background: #f3faff;border-bottom: 2rpx solid #e7e7e7;font-size: 26rpx;color: #666; position: relative;z-index: 2;}
 	.scrollMsg .icon{ width: 42rpx; height: 38rpx;position: absolute;top: 21rpx;left: 3%;}
 	
-	.inde-nav{display: flex;flex-wrap: wrap; position: fixed;bottom: 100rpx;top: 560rpx; left: 0;right: 0;width: 100%;box-sizing: border-box;}
+	.inde-nav{display: flex;flex-wrap: wrap; position: fixed;bottom: 0;top: 485rpx; left: 0;right: 0;width: 100%;box-sizing: border-box;}
 	.inde-nav .item{width: 33.3%;/* padding:94rpx 0; */ text-align: center;border-right: 2rpx solid #e7e7e7;border-bottom:2rpx solid #e7e7e7 ;box-sizing: border-box; height: 50%; display: flex;justify-content: center;align-items: center;}
 	.inde-nav .item .icon{width:80rpx; height: 80rpx; display: block;margin: 0 auto;}
 	.inde-nav .item .title{font-size: 28rpx; margin-top: 26rpx;}

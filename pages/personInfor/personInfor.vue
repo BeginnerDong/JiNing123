@@ -24,21 +24,24 @@
 					<input type="text" placeholder="请输入联系电话" v-model="submitData.phone">
 				</view>
 			</view>
-			<view class="list_item flex">
+			<!-- <view class="list_item flex">
 				<span class="sqr_common import">验证码:</span>
 				<view class="sqr_name phoneNum" style="display: flex; justify-content: space-between;">
 					<input type="text" placeholder="请输入验证码" style="display: block; width:260rpx;margin: 0;">
 					<view class="yzm">获取验证码</view>
 				</view>
-			</view>
+			</view> -->
 			<view class="list_item flex">
 				<span class="sqr_common import">选择省县乡:</span>
 				<view class="sqr_name">
 					<input type="text" :placeholder="address" disabled="true">  
 				</view>
 			</view>
-			<view>
+			<view v-if="!hasRegister">
 				<button class="submitBtn" type="submit" @click="Utils.stopMultiClick(submit)">提交</button>
+			</view>
+			<view v-if="hasRegister">
+				<button class="submitBtn" type="submit" style="background: #AAAAAA;">您已注册</button>
 			</view>
 		</view>
 	</view>
@@ -62,6 +65,7 @@
 					phone:'',
 					gender:'',
 				},
+				hasRegister:false
 			};
 		},
 
@@ -122,6 +126,10 @@
 						self.submitData.phone = self.userData.info.phone;
 						self.submitData.gender = self.userData.info.gender;
 						self.address = self.userData.city.title+self.userData.country.title+self.userData.town.title
+						if(self.userData.info.name!=''){
+							self.hasRegister = true
+							
+						}
 					}else{
 						self.$Utils.showToast(res.msg, 'none')
 					}
